@@ -17,4 +17,7 @@ public class Drone {
         System.out.println("test");
         
     }
+    public void manger(){
+        System.out.println("asdf");
+    }
 }
