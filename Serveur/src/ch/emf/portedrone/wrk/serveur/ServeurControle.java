@@ -4,19 +4,12 @@
  * and open the template in the editor.
  */
 
-package ch.emf.portedrone;
+package ch.emf.portedrone.wrk.serveur;
 
 /**
  *
  * @author ramosdasilm
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
+public class ServeurControle extends Serveur {
+    private IEcouteurServeurControle ecouteur;
 }
