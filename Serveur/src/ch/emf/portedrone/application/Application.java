@@ -18,11 +18,7 @@ public class Application {
     }
     
 
-    public static void tonperer(){
-    
-    }
     public static void tamere() {
         System.out.println("ce");
-
     }
 }
