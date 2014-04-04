@@ -16,8 +16,12 @@ public class Application {
     public static void main(String[] args) {
         // TODO code application logic here
     }
-    
+
     public static void tamere() {
+        System.out.println("ce");
+    }
+
+    public static void tonpere() {
         System.out.println("ce");
     }
 }
