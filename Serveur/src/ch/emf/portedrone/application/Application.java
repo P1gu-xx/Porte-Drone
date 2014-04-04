@@ -18,6 +18,9 @@ public class Application {
     }
     
 
+    
+    
+    
     public static void tamere() {
         System.out.println("ce");
     }
