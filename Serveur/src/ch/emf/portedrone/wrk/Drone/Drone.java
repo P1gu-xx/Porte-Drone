@@ -12,4 +12,9 @@ package ch.emf.portedrone.wrk.Drone;
 public class Drone {
 
     private IEcouteurDrone ecouteurDrone;
+    
+    public void decoller(){
+        System.out.println("test");
+        
+    }
 }
