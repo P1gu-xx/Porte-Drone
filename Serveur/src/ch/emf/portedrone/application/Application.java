@@ -21,6 +21,10 @@ public class Application {
         System.out.println("ce");
     }
 
+    public static void tonpere() {
+        System.out.println("ce");
+    }
+
     public static void tonFils() {
         System.out.println("ce");
     }
