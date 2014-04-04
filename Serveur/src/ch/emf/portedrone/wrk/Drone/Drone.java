@@ -12,4 +12,8 @@ package ch.emf.portedrone.wrk.Drone;
 public class Drone {
 
     private IEcouteurDrone ecouteurDrone;
+    
+    public void atterir() {
+        System.out.println("Test n'importe quoi ! Ctrl+s.");
+    }
 }
