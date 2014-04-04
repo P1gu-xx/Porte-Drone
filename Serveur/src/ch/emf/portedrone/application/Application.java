@@ -17,7 +17,6 @@ public class Application {
         // TODO code application logic here
     }
     
-
     public static void tamere() {
         System.out.println("ce");
     }
