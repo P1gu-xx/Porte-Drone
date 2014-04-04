@@ -13,15 +13,4 @@ public class Drone {
 
     private IEcouteurDrone ecouteurDrone;
     
-    public void atterir() {
-        System.out.println("Test n'importe quoi ! Ctrl+s.");
-    }
-    
-    public void decoller(){
-        System.out.println("test");
-        
-    }
-    public void manger(){
-        System.out.println("asdf");
-    }
 }

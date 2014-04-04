@@ -15,6 +15,7 @@ import ch.emf.portedrone.wrk.serveur.IEcouteurServeurControle;
 import ch.emf.portedrone.wrk.serveur.IEcouteurServeurVideo;
 import ch.emf.portedrone.wrk.serveur.ServeurControle;
 import ch.emf.portedrone.wrk.serveur.ServeurVideo;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -29,4 +30,28 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurS
     private ServeurControle serveurControle;
     private WrkHttp wrkHttp;
 
+    @Override
+    public void droneImageRecu(BufferedImage img) {
+
+    }
+
+    @Override
+    public void droneAltitudeRecu(int alt) {
+
+    }
+
+    @Override
+    public void droneNiveauDeBattrieRecu(int i) {
+
+    }
+
+    @Override
+    public void droneNiveauDeReseauWifiRecu(long l) {
+
+    }
+
+    @Override
+    public void droneDeconnecter() {
+
+    }
 }
