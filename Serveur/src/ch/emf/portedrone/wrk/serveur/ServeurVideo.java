@@ -3,13 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ch.emf.portedrone.wrk.serveur;
 
 /**
  *
  * @author ramosdasilm
  */
-public class ServeurVideo extends Serveur  {
+public class ServeurVideo extends Serveur {
+
     private IEcouteurServeurVideo ecouteur;
+
+    public ServeurVideo() {
+    super();
+    
+    }
+
+    
+    
+    @Override
+    void messageRecu(int i) {
+        switch (i) {
+            case 0:
+
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+
+    @Override
+    public void run() {
+        super.run(); 
+        
+    }
+
 }

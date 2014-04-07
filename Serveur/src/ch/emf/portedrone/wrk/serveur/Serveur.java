@@ -3,13 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ch.emf.portedrone.wrk.serveur;
 
 /**
  *
  * @author ramosdasilm
  */
-public class Serveur {
-    
+public abstract class Serveur extends Thread {
+
+    protected int portEcoute;
+    protected boolean running;
+
+    public Serveur() {
+        running = true;
+    }
+
+    abstract void messageRecu(int i);
+
+    @Override
+    public void run() {
+        super.run(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
 }

@@ -24,6 +24,7 @@ import java.awt.image.BufferedImage;
  */
 public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurServeurControle, IEcouteurServeurVideo {
 
+    private final int portEcoute = 55584;
     private ICtrlWrk ctrl;
     private Drone drone;
     private RobotLego robotLego;
@@ -35,12 +36,17 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurS
 
     public Wrk(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
+        info = new Info();
         running = true;
+
+        drone = new Drone(this);
+        serveurControle = new ServeurControle(portEcoute);
+        drone.connecter();
     }
 
     public boolean start() {
-        drone = new Drone(this);
-        return drone.connecter();
+        traiterLesDonnees();
+        return true;
     }
 
     @Override
@@ -51,7 +57,8 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurS
 
     public void traiterLesDonnees() {
         while (running) {
-            
+            info.infoDrone = drone.getInfo();
+            ctrl.nouvelleInfo(info);
         }
     }
 

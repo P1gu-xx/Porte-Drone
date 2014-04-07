@@ -79,6 +79,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
             drone.getNavDataManager().addBatteryListener(this);
             drone.getNavDataManager().addWifiListener(this);
 
+            info.connecter = true;
         } catch (Exception exc) {
             System.out.println("erreur lors de la creation du drone");
             return false;
@@ -190,7 +191,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         } else if (exc instanceof NavDataException) {
 
         } else if (exc instanceof VideoException) {
-            drone.getVideoManager().reinitialize();
+
         }
     }
 
@@ -203,6 +204,10 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
             } catch (InterruptedException ex) {
             }
         }
+    }
+
+    public InfoDrone getInfo() {
+        return info;
     }
 
 }
