@@ -5,6 +5,7 @@
  */
 package ch.emf.portedrone.wrk;
 
+import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.ctrl.ICtrlWrk;
 import ch.emf.portedrone.wrk.Drone.Drone;
 import ch.emf.portedrone.wrk.Drone.IEcouteurDrone;
@@ -23,12 +24,36 @@ import java.awt.image.BufferedImage;
  */
 public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurServeurControle, IEcouteurServeurVideo {
 
-    private ICtrlWrk Ctrl;
+    private ICtrlWrk ctrl;
     private Drone drone;
     private RobotLego robotLego;
     private ServeurVideo serveurVideo;
     private ServeurControle serveurControle;
     private WrkHttp wrkHttp;
+    private boolean running;
+    private Info info;
+
+    public Wrk(ICtrlWrk ctrl) {
+        this.ctrl = ctrl;
+        running = true;
+    }
+
+    public boolean start() {
+        drone = new Drone(this);
+        return drone.connecter();
+    }
+
+    @Override
+    public void stop() {
+        running = false;
+        drone.stop();
+    }
+
+    public void traiterLesDonnees() {
+        while (running) {
+            
+        }
+    }
 
     @Override
     public void droneImageRecu(BufferedImage img) {

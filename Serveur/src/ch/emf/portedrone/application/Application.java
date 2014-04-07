@@ -4,6 +4,9 @@
  */
 package ch.emf.portedrone.application;
 
+import ch.emf.portedrone.ctrl.Ctrl;
+import ch.emf.portedrone.ihm.Ihm;
+
 /**
  *
  * @author PeclatJ
@@ -14,18 +17,9 @@ public class Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-    }
-
-    public static void tamere() {
-        System.out.println("ce");
-    }
-
-    public static void tonpere() {
-        System.out.println("ce");
-    }
-
-    public static void tonFils() {
-        System.out.println("ce");
+        Ihm ihm = new Ihm();
+        Ctrl ctrl = new Ctrl(ihm);
+        ihm.setCtrl(ctrl);
+        ctrl.start();
     }
 }

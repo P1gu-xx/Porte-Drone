@@ -7,6 +7,7 @@ package ch.emf.portedrone.ctrl;
 
 import ch.emf.portedrone.ihm.IIhm;
 import ch.emf.portedrone.wrk.IWrk;
+import ch.emf.portedrone.wrk.Wrk;
 
 /**
  *
@@ -16,4 +17,19 @@ public class Ctrl implements ICtrlWrk, ICtrlIhm {
 
     private IWrk wrk;
     private IIhm ihm;
+
+    public Ctrl(IIhm ihm) {
+        this.ihm = ihm;
+        this.wrk = new Wrk(this);
+    }
+
+    public void start() {
+        ihm.afficher(true);
+        boolean start = wrk.start();
+    }
+
+    @Override
+    public void exit() {
+        wrk.stop();
+    }
 }

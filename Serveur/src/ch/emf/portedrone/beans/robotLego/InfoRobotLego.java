@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package ch.emf.portedrone.ctrl;
+package ch.emf.portedrone.beans.robotLego;
 
 /**
  *
  * @author ramosdasilm
  */
-public interface ICtrlIhm {
-    void exit();
+public class InfoRobotLego {
+
+    private DeplacementRobotLego deplacementRobotLego;
+    private Echo echo;
+    private float angle;
 }

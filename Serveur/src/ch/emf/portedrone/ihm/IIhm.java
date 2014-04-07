@@ -3,13 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ch.emf.portedrone.ihm;
+
+import ch.emf.portedrone.beans.Info;
 
 /**
  *
  * @author ramosdasilm
  */
 public interface IIhm {
-    
+
+    /**
+     * permet de rendre visible ou masquer l'ihm.
+     *
+     * @param visible
+     */
+    void afficher(boolean visible);
+
+    void afficherInfoDrone(Info info);
 }

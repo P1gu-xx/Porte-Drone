@@ -5,6 +5,8 @@
  */
 package ch.emf.portedrone.wrk.Drone;
 
+import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.drone.InfoDrone;
 import de.yadrone.base.ARDrone;
 import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.LEDAnimation;
@@ -26,6 +28,8 @@ import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,26 +40,22 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
     private IEcouteurDrone ecouteurDrone;
     private IARDrone drone;
     private BufferedImage image;
-    private boolean decoller;
-    private boolean enVol;
-    private boolean enDecollage;
     private final int vitesse = 20;
     private TimerTask task;
     private Timer timer;
+    private InfoDrone info;
 
     public Drone(IEcouteurDrone ecouteurDrone) {
         this.ecouteurDrone = ecouteurDrone;
-        decoller = false;
-        enVol = false;
-        enDecollage = false;
+        info = new InfoDrone(new DeplacementDrone(0, 0, 0, 0), 0, 0, 0, false, false, false, false);
 
         task = new TimerTask() {
             @Override
             public void run() {
-                if (decoller) {
-                    enVol = true;
+                if (info.decoller) {
+                    info.enVol = true;
                 }
-                enDecollage = false;
+                info.enDecollage = false;
             }
         };
 
@@ -64,6 +64,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     /**
      * va se connecter au drone et mettre tout les ecouteurs dont il a besoin.
+     *
      * @return si il n'y a pas eu d'erreur retourn true sinon false.
      */
     public boolean connecter() {
@@ -87,6 +88,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     /**
      * permet de changer de camera sur le drone.
+     *
      * @return false si le drone n'est pas connecter sinon true.
      */
     public boolean changerCamera() {
@@ -98,24 +100,17 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         return ok;
     }
 
-
     /**
      * Permet de choisir la vitesse de déplacement en x,y,z et le spin. Une fois
      * une ordre donner le drone va l'appliquer jusqu'au prochain ordre.
      *
-     * @param x le pourcentage a la quelle le drone doit bouger en x (-100% a
-     * 100%)
-     * @param y le pourcentage a la quelle le drone doit bouger en y (-100% a
-     * 100%)
-     * @param z le pourcentage a la quelle le drone doit bouger en z (-100% a
-     * 100%)
-     * @param spin le pourcentage a la quelle le drone doit faire une rotation
-     * (-100% a 100%)
+     * @param dd un bean avec les info de deplacement en x,y,z et spin
      */
-    public boolean bouger(int x, int y, int z, int spin) {
+    public boolean bouger(DeplacementDrone dd) {
         boolean ok = false;
-        if (enVol) {
-            drone.getCommandManager().move(x, y, z, spin);
+        if (info.enVol) {
+            info.deplacementDrone = dd;
+            drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
             ok = true;
         }
         return ok;
@@ -131,15 +126,15 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      */
     public boolean decoller() {
         boolean ok = false;
-        if (drone != null && !enDecollage) {
-            if (decoller) {
-                enVol = false;
+        if (drone != null && !info.enDecollage) {
+            if (info.decoller) {
+                info.enVol = false;
                 drone.getCommandManager().landing();
             } else {
-                enVol = false;
+                info.enVol = false;
                 drone.getCommandManager().takeOff();
             }
-            decoller = !decoller;
+            info.decoller = !info.decoller;
             timer.schedule(task, new Date(System.currentTimeMillis() + 4000));
             ok = true;
         }
@@ -154,6 +149,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void receivedAltitude(int i) {
+        info.hauteur = i;
         ecouteurDrone.droneAltitudeRecu(i);
     }
 
@@ -163,6 +159,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void batteryLevelChanged(int i) {
+        info.niveauDeBattrie = i;
         ecouteurDrone.droneNiveauDeBattrieRecu(i);
     }
 
@@ -172,6 +169,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void received(long l) {
+        info.reseauWifi = l;
         ecouteurDrone.droneNiveauDeReseauWifiRecu(l);
     }
 
@@ -193,6 +191,17 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
         } else if (exc instanceof VideoException) {
             drone.getVideoManager().reinitialize();
+        }
+    }
+
+    public void stop() {
+        if (drone != null) {
+            drone.getCommandManager().landing();
+            drone.stop();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException ex) {
+            }
         }
     }
 

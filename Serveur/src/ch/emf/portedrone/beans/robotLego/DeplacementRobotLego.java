@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package ch.emf.portedrone.ctrl;
+package ch.emf.portedrone.beans.robotLego;
 
 /**
  *
  * @author ramosdasilm
  */
-public interface ICtrlIhm {
-    void exit();
+public class DeplacementRobotLego {
+    public int vitesseRoueDroite,vitesseRoueGauche;
 }
