@@ -40,5 +40,5 @@ public interface IEcouteurDrone {
     /**
      * est appeller lors que le drone est déconnecter.
      */
-    void droneDeconnecter();
+    void droneDeconnecter();    
 }
