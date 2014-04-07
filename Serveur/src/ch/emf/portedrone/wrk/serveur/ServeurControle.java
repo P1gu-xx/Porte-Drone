@@ -38,7 +38,7 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-        
+
     }
 
     @Override
@@ -55,8 +55,8 @@ public class ServeurControle extends Serveur {
     @Override
     public void run() {
         super.run();
+        attendreConnexion();
         while (running) {
-            attendreConnexion();
             try {
                 messageRecu(dis.readInt());
             } catch (IOException ex) {
@@ -67,7 +67,9 @@ public class ServeurControle extends Serveur {
 
     public void attendreConnexion() {
         try {
+            System.out.println("asdf");
             s = ss.accept();
+            System.out.println("asdf2");
             dos = new DataOutputStream(s.getOutputStream());
             dis = new DataInputStream(s.getInputStream());
             authentification();
@@ -78,12 +80,15 @@ public class ServeurControle extends Serveur {
 
     public void authentification() {
         try {
+            dos.writeUTF("asdf");
             String email = dis.readUTF();
             String mdp = dis.readUTF();
             if ("admin".equals(email) && "admin".equals(mdp)) {
-
+                System.out.println("erreur");
+                
             }
         } catch (IOException ex) {
+            System.out.println("");
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
         }
 
