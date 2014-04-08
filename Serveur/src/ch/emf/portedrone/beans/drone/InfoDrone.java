@@ -5,11 +5,13 @@
  */
 package ch.emf.portedrone.beans.drone;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramosdasilm
  */
-public class InfoDrone {
+public class InfoDrone implements Serializable{
 
     public DeplacementDrone deplacementDrone;
     public int hauteur, niveauDeBattrie;

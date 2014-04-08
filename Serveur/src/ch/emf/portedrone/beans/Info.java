@@ -7,12 +7,13 @@ package ch.emf.portedrone.beans;
 
 import ch.emf.portedrone.beans.drone.InfoDrone;
 import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
+import java.io.Serializable;
 
 /**
  *
  * @author ramosdasilm
  */
-public class Info {
+public class Info implements Serializable{
 
     public InfoDrone infoDrone;
     public InfoMindstorms infoRobotLego;

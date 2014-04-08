@@ -5,11 +5,13 @@
  */
 package ch.emf.portedrone.beans.mindstorms;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramosdasilm
  */
-public class DeplacementMindstorms {
+public class DeplacementMindstorms implements Serializable{
 
     public int vitesseRoueDroite, vitesseRoueGauche;
 

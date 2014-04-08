@@ -5,11 +5,13 @@
  */
 package ch.emf.portedrone.beans.mindstorms;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramosdasilm
  */
-public class InfoMindstorms {
+public class InfoMindstorms implements Serializable{
 
     public DeplacementMindstorms deplacementMindstorms;
     public Echo echo;

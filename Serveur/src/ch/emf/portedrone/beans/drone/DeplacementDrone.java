@@ -5,11 +5,13 @@
  */
 package ch.emf.portedrone.beans.drone;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramosdasilm
  */
-public class DeplacementDrone {
+public class DeplacementDrone implements Serializable{
 
     public int vitesseX, vitesseY, vitesseZ, spin;
 
