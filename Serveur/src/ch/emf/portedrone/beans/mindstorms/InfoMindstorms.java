@@ -6,14 +6,20 @@
 package ch.emf.portedrone.beans.mindstorms;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  *
  * @author ramosdasilm
  */
-public class InfoMindstorms implements Serializable{
+public class InfoMindstorms implements Serializable {
 
     public DeplacementMindstorms deplacementMindstorms;
-    public Echo echo;
+    public ArrayList<Echo> echo;
     public float angle;
+
+    public InfoMindstorms() {
+        echo = new ArrayList<Echo>();
+    }
+
 }
