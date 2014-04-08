@@ -21,6 +21,8 @@ import ch.emf.portedrone.wrk.serveur.IEcouteurServeurVideo;
 import ch.emf.portedrone.wrk.serveur.ServeurControle;
 import ch.emf.portedrone.wrk.serveur.ServeurVideo;
 import java.awt.image.BufferedImage;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -56,22 +58,37 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     @Override
     public void stop() {
         running = false;
+        serveurControle.setRunning(false);
         drone.stop();
     }
 
     public void traiterLesDonnees() {
-        InfoMindstorms infoMindstorms = new InfoMindstorms();
-        infoMindstorms.batterie = 2.5f;
-        infoMindstorms.angle = 90;
-        infoMindstorms.echo.add(new Echo(1.2, 20.0));
-        infoMindstorms.echo.add(new Echo(1.6, 20.0));
-        infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(80, 95);
+
+        float i = 0;
         while (running) {
-            info.infoDrone = drone.getInfo();
+            InfoMindstorms infoMindstorms = new InfoMindstorms();
+            infoMindstorms.batterie = 2.5f;
+            infoMindstorms.angle = 90;
+            infoMindstorms.echo.add(new Echo(0.0, 20.0));
+            infoMindstorms.echo.add(new Echo(0.25, 20.0));
+            infoMindstorms.echo.add(new Echo(0.5, 20.0));
+            infoMindstorms.echo.add(new Echo(0.75, 20.0));
+            infoMindstorms.echo.add(new Echo(1, 20.0));
+            infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(80, 95);
+            i = i + 0.01f;
+            infoMindstorms.angle = i;
+            info = new Info();
             info.infoMindstorms = infoMindstorms;
+            info.infoDrone = drone.getInfo();
             ctrl.nouvelleInfo(info);
-            
+
+            System.out.println(info.infoMindstorms.angle);
             serveurControle.envoyerInfo(info);
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Wrk.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

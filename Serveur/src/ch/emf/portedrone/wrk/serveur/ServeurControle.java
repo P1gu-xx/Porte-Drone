@@ -7,10 +7,6 @@ package ch.emf.portedrone.wrk.serveur;
 
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.Login;
-import ch.emf.portedrone.beans.drone.DeplacementDrone;
-import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -30,9 +26,11 @@ public class ServeurControle extends Serveur {
     private Socket s;
     private ObjectOutputStream oos;
     private ObjectInputStream ois;
+    private boolean loger;
 
     public ServeurControle(int portEcoute) {
         super();
+        loger=false;
         this.portEcoute = portEcoute;
         try {
             ss = new ServerSocket(portEcoute);
@@ -43,11 +41,14 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-        if (oos != null) {
+        if (oos != null&&loger) {
             try {
+                System.out.println("envoye un objet");
                 oos.writeObject(info);
+                oos.flush();
+                System.out.println("ok");
             } catch (IOException ex) {
-                attendreConnexion();
+
             }
         }
     }
@@ -85,6 +86,12 @@ public class ServeurControle extends Serveur {
 
             if ("admin".equals(login.email) && "admin".equals(login.mdp)) {
                 System.out.println("connexion ok");
+                loger=true;
+                oos.writeBoolean(true);
+                
+            } else {
+                oos.writeBoolean(false);
+                authentification();
             }
         } catch (IOException ex) {
             attendreConnexion();
@@ -93,6 +100,15 @@ public class ServeurControle extends Serveur {
             attendreConnexion();
         }
 
+    }
+
+    public void setRunning(boolean running) {
+        try {
+            this.running = running;
+            s.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
