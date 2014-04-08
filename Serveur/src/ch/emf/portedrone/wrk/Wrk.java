@@ -6,11 +6,13 @@
 package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.Info;
+import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import ch.emf.portedrone.ctrl.ICtrlWrk;
 import ch.emf.portedrone.wrk.Drone.Drone;
 import ch.emf.portedrone.wrk.Drone.IEcouteurDrone;
-import ch.emf.portedrone.wrk.RobotLego.IEcouteurRobotLego;
-import ch.emf.portedrone.wrk.RobotLego.RobotLego;
+import ch.emf.portedrone.wrk.mindstorms.IEcouteurMindstorms;
+import ch.emf.portedrone.wrk.mindstorms.Mindstorms;
 import ch.emf.portedrone.wrk.http.WrkHttp;
 import ch.emf.portedrone.wrk.serveur.IEcouteurServeurControle;
 import ch.emf.portedrone.wrk.serveur.IEcouteurServeurVideo;
@@ -22,12 +24,12 @@ import java.awt.image.BufferedImage;
  *
  * @author ramosdasilm
  */
-public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurServeurControle, IEcouteurServeurVideo {
+public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteurServeurControle, IEcouteurServeurVideo {
 
     private final int portEcoute = 55584;
     private ICtrlWrk ctrl;
     private Drone drone;
-    private RobotLego robotLego;
+    private Mindstorms mindstorms;
     private ServeurVideo serveurVideo;
     private ServeurControle serveurControle;
     private WrkHttp wrkHttp;
@@ -86,4 +88,30 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurRobotLego, IEcouteurS
     public void droneDeconnecter() {
 
     }
+
+    @Override
+    public void faireBougerDrone(DeplacementDrone dd) {
+
+    }
+
+    @Override
+    public void faireDecollerDrone() {
+
+    }
+
+    @Override
+    public void changerLaCamera() {
+
+    }
+
+    @Override
+    public void faireBougerRobotLego(DeplacementMindstorms drl) {
+
+    }
+
+    @Override
+    public void faireUnAtterisageAutaumatique() {
+
+    }
+
 }

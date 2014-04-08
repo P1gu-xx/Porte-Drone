@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package ch.emf.portedrone.wrk.RobotLego;
+package ch.emf.portedrone.wrk.mindstorms;
 
 /**
  *
  * @author ramosdasilm
  */
-public class RobotLego {
-    private IEcouteurRobotLego ecouteur;
+public class Mindstorms {
+    private IEcouteurMindstorms ecouteur;
 }

@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package ch.emf.portedrone.wrk.RobotLego;
+package ch.emf.portedrone.beans.mindstorms;
 
 /**
  *
  * @author ramosdasilm
  */
-public interface IEcouteurRobotLego {
-    
+public class InfoMindstorms {
+
+    public DeplacementMindstorms deplacementMindstorms;
+    public Echo echo;
+    public float angle;
 }

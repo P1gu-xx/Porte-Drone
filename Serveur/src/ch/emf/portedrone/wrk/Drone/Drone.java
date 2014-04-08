@@ -8,7 +8,6 @@ package ch.emf.portedrone.wrk.Drone;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
 import ch.emf.portedrone.beans.drone.InfoDrone;
 import de.yadrone.base.ARDrone;
-import de.yadrone.base.IARDrone;
 import de.yadrone.base.command.LEDAnimation;
 import de.yadrone.base.exception.ARDroneException;
 import de.yadrone.base.exception.CommandException;
@@ -28,8 +27,6 @@ import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -38,7 +35,7 @@ import java.util.logging.Logger;
 public class Drone implements ImageListener, AltitudeListener, BatteryListener, WifiListener, AcceleroListener, IExceptionListener {
 
     private IEcouteurDrone ecouteurDrone;
-    private IARDrone drone;
+    private ARDrone drone;
     private BufferedImage image;
     private final int vitesse = 20;
     private TimerTask task;
@@ -79,7 +76,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
             drone.getNavDataManager().addBatteryListener(this);
             drone.getNavDataManager().addWifiListener(this);
 
-            info.connecter = true;
+            info.connecter = false;
         } catch (Exception exc) {
             System.out.println("erreur lors de la creation du drone");
             return false;
@@ -109,7 +106,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      */
     public boolean bouger(DeplacementDrone dd) {
         boolean ok = false;
-        if (info.enVol) {
+        if (info.enVol && drone!=null) {
             info.deplacementDrone = dd;
             drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
             ok = true;

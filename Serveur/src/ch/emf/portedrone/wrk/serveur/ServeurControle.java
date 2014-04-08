@@ -6,6 +6,8 @@
 package ch.emf.portedrone.wrk.serveur;
 
 import ch.emf.portedrone.beans.Info;
+import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -38,18 +40,35 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-
+        
     }
 
     @Override
     void messageRecu(int i) {
-        switch (i) {
-            case 0:
+        try {
+            switch (i) {
+                case 0://faire decoller ou atterire le drone
+                    ecouteur.faireDecollerDrone();
+                    break;
+                case 1://faire bouger le drone
+                    ecouteur.faireBougerDrone(new DeplacementDrone(dis.readInt(), dis.readInt(), dis.readInt(), dis.readInt()));
 
-                break;
-            default:
-                throw new AssertionError();
+                    break;
+                case 2://changer la camera du drone
+                    ecouteur.changerLaCamera();
+                    break;
+                case 3://faire bouger le robot lego
+                    ecouteur.faireBougerRobotLego(new DeplacementMindstorms(dis.readInt(), dis.readInt()));
+                    break;
+                case 4://demander atterisage automatique
+                    ecouteur.faireUnAtterisageAutaumatique();
+                    break;
+                default:
+            }
+        } catch (IOException ex) {
+            attendreConnexion();
         }
+
     }
 
     @Override
@@ -67,9 +86,7 @@ public class ServeurControle extends Serveur {
 
     public void attendreConnexion() {
         try {
-            System.out.println("asdf");
             s = ss.accept();
-            System.out.println("asdf2");
             dos = new DataOutputStream(s.getOutputStream());
             dis = new DataInputStream(s.getInputStream());
             authentification();
@@ -80,16 +97,14 @@ public class ServeurControle extends Serveur {
 
     public void authentification() {
         try {
-            dos.writeUTF("asdf");
             String email = dis.readUTF();
+            System.out.println(email);
             String mdp = dis.readUTF();
             if ("admin".equals(email) && "admin".equals(mdp)) {
-                System.out.println("erreur");
-                
+                System.out.println("connexion ok");
             }
         } catch (IOException ex) {
-            System.out.println("");
-            Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
+            attendreConnexion();
         }
 
     }

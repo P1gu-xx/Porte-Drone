@@ -6,7 +6,7 @@
 package ch.emf.portedrone.beans;
 
 import ch.emf.portedrone.beans.drone.InfoDrone;
-import ch.emf.portedrone.beans.robotLego.InfoRobotLego;
+import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
 
 /**
  *
@@ -15,5 +15,5 @@ import ch.emf.portedrone.beans.robotLego.InfoRobotLego;
 public class Info {
 
     public InfoDrone infoDrone;
-    public InfoRobotLego infoRobotLego;
+    public InfoMindstorms infoRobotLego;
 }
