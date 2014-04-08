@@ -5,16 +5,17 @@
  */
 package ch.emf.portedrone.beans;
 
-import ch.emf.portedrone.beans.drone.InfoDrone;
-import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
-import java.io.Serializable;
-
 /**
  *
  * @author ramosdasilm
  */
-public class Info implements Serializable {
+public class Login {
 
-    public InfoDrone infoDrone;
-    public InfoMindstorms infoMindstorms;
+    public String email, mdp;
+
+    public Login(String email, String mdp) {
+        this.email = email;
+        this.mdp = mdp;
+    }
+
 }

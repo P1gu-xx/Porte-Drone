@@ -16,7 +16,7 @@ public class InfoMindstorms implements Serializable {
 
     public DeplacementMindstorms deplacementMindstorms;
     public ArrayList<Echo> echo;
-    public float angle;
+    public float angle,batterie;
 
     public InfoMindstorms() {
         echo = new ArrayList<Echo>();

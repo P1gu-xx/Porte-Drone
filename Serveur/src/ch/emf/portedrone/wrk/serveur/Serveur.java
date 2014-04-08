@@ -18,8 +18,6 @@ public abstract class Serveur extends Thread {
         running = true;
     }
 
-    abstract void messageRecu(int i);
-
     @Override
     public void run() {
         super.run(); //To change body of generated methods, choose Tools | Templates.

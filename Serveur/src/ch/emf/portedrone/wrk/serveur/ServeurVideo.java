@@ -17,19 +17,7 @@ public class ServeurVideo extends Serveur {
     super();
     
     }
-
     
-    
-    @Override
-    void messageRecu(int i) {
-        switch (i) {
-            case 0:
-
-                break;
-            default:
-                throw new AssertionError();
-        }
-    }
 
     @Override
     public void run() {

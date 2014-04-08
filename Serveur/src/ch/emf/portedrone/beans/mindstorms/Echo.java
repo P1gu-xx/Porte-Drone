@@ -11,13 +11,13 @@ import java.io.Serializable;
  *
  * @author ramosdasilm
  */
-public class Echo implements Serializable{
+public class Echo implements Serializable {
 
-    public int x, y;
+    public double position_x, position_y;
 
-    public Echo(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Echo(double position_x, double position_y) {
+        this.position_x = position_x;
+        this.position_y = position_y;
     }
 
 }
