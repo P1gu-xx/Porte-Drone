@@ -8,6 +8,8 @@ package ch.emf.portedrone.wrk;
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
+import ch.emf.portedrone.beans.mindstorms.Echo;
+import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
 import ch.emf.portedrone.ctrl.ICtrlWrk;
 import ch.emf.portedrone.wrk.Drone.Drone;
 import ch.emf.portedrone.wrk.Drone.IEcouteurDrone;
@@ -58,9 +60,18 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     }
 
     public void traiterLesDonnees() {
+        InfoMindstorms infoMindstorms = new InfoMindstorms();
+        infoMindstorms.batterie = 2.5f;
+        infoMindstorms.angle = 90;
+        infoMindstorms.echo.add(new Echo(1.2, 20.0));
+        infoMindstorms.echo.add(new Echo(1.6, 20.0));
+        infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(80, 95);
         while (running) {
             info.infoDrone = drone.getInfo();
+            info.infoMindstorms = infoMindstorms;
             ctrl.nouvelleInfo(info);
+            
+            serveurControle.envoyerInfo(info);
         }
     }
 

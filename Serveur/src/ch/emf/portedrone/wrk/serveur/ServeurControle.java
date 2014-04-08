@@ -43,10 +43,12 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-        try {
-            oos.writeObject(info);
-        } catch (IOException ex) {
-            attendreConnexion();
+        if (oos != null) {
+            try {
+                oos.writeObject(info);
+            } catch (IOException ex) {
+                attendreConnexion();
+            }
         }
     }
 
