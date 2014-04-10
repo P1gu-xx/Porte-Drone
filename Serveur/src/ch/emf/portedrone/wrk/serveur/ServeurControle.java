@@ -90,6 +90,7 @@ public class ServeurControle extends Serveur {
                 System.out.println("connexion ok");
                 loger = true;
                 oos.writeBoolean(true);
+                System.out.println("confirme");
                 oos.flush();
             } else {
                 oos.writeBoolean(false);
