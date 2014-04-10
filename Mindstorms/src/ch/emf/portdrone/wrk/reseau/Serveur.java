@@ -49,6 +49,7 @@ public class Serveur extends Thread {
                             }
                         } catch (IOException ex) {
                             System.out.println("Le flux entrant TCP a été interrompu.");
+                            connexion = false;
                         } catch (ClassNotFoundException ex) {
                             System.out.println("Le message n'est pas coherant.");
                         }
