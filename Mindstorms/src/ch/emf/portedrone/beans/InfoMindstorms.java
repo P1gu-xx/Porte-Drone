@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portdrone.beans;
+package ch.emf.portedrone.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;

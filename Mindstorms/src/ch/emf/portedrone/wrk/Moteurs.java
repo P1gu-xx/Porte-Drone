@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portdrone.wrk;
+package ch.emf.portedrone.wrk;
 
-import ch.emf.portdrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.DeplacementMindstorms;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;

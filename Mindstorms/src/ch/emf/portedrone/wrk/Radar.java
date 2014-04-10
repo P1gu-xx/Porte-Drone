@@ -1,4 +1,4 @@
-package ch.emf.portdrone.wrk;
+package ch.emf.portedrone.wrk;
 
 import lejos.hardware.ev3.LocalEV3;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
@@ -29,7 +29,7 @@ public class Radar {
         
         // Moteur
         radarMotor = new EV3MediumRegulatedMotor(MOTOR_PORT);
-        radarMotor.setSpeed(100);
+        radarMotor.setSpeed(500);
         radarMotor.setAcceleration(200);
     }
     
@@ -38,7 +38,12 @@ public class Radar {
         fetch();
         
         // Bouge le moteur.
-        radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
+        System.out.println("radarRotation : " + radarRotation + ", echoAngle : " + (int)echoAngle + ", resultat : "+(Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE);
+        if(echoFound) {
+            //radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
+            radarMotor.rotate((int)echoAngle, true);
+        }
+        
     }
     
     private void fetch() {
@@ -68,8 +73,8 @@ public class Radar {
     
     private static final String IRSENSORPORT = "S1";
     private static final Port MOTOR_PORT = MotorPort.A;
-    private static final int MIN_ANGLE = 0;
-    private static final int MAX_ANGLE = 360;
+    private static final int MIN_ANGLE = 180;
+    private static final int MAX_ANGLE = -180;
 
     private Port irSensorPort;
     private SensorModes irSensorModes;

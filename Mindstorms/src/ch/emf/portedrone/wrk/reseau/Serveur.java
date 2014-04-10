@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portdrone.wrk.reseau;
+package ch.emf.portedrone.wrk.reseau;
 
-import ch.emf.portdrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.DeplacementMindstorms;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
