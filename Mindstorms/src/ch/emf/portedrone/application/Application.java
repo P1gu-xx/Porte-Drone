@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portdrone.application;
+package ch.emf.portedrone.application;
 
-import ch.emf.portdrone.wrk.Wrk;
+import ch.emf.portedrone.wrk.Wrk;
 
 /**
  *

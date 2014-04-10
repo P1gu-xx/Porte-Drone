@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portdrone.wrk;
+package ch.emf.portedrone.wrk;
 
-import ch.emf.portdrone.beans.DeplacementMindstorms;
-import ch.emf.portdrone.beans.Echo;
-import ch.emf.portdrone.wrk.reseau.IEcouteurServeur;
-import ch.emf.portdrone.wrk.reseau.Serveur;
+import ch.emf.portedrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.Echo;
+import ch.emf.portedrone.wrk.reseau.IEcouteurServeur;
+import ch.emf.portedrone.wrk.reseau.Serveur;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lejos.hardware.Button;
 import lejos.hardware.Key;
 import lejos.hardware.KeyListener;
@@ -46,7 +48,19 @@ public class Wrk implements IEcouteurServeur, KeyListener {
             radar.update();
             serveur.ecrireObjet(1, Math.toRadians(radar.getRotation()));
             
-            Delay.msDelay(10);
+            //Delay.msDelay(1);
+        }
+        
+        exit();
+    }
+    
+    public void exit() {
+        exit = true;
+        try {
+            serveur.exit();
+            serveur.join();
+        } catch (InterruptedException ex) {
+            System.out.println("Impossible de joindre le thread");
         }
     }
 
@@ -61,7 +75,7 @@ public class Wrk implements IEcouteurServeur, KeyListener {
 
     @Override
     public void keyReleased(Key key) {
-        exit = true;
+        exit();
     }
     
     private Serveur serveur;
