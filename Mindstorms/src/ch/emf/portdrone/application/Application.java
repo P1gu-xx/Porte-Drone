@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package application;
+package ch.emf.portdrone.application;
 
-import wrk.Wrk;
+import ch.emf.portdrone.wrk.Wrk;
 
 /**
  *
@@ -18,5 +18,6 @@ public class Application {
     public static void main(String[] args) {
         
         Wrk wrk = new Wrk();
+        wrk.start();
     }
 }
