@@ -7,7 +7,6 @@ package ch.emf.portedrone.wrk.reseau;
 import ch.emf.portedrone.beans.Login;
 import ch.emf.portedrone.exception.ConnexionException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
@@ -15,6 +14,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,56 +26,49 @@ public class Client {
     public Client() {
         communicationControle = new CommunicationControle();
         communicationVideo = new CommunicationVideo();
-    }
-
-    public void connexion(String adresse) throws ConnexionException {
-        connexion = false;
-        this.adresse = adresse;
-        try {
-            socketTCP = new Socket(InetAddress.getByName(adresse), PORT_TCP);
-            System.out.println("Connecté");
-            socketUDP = new DatagramSocket();
-
-
-            outTCP = new ObjectOutputStream(socketTCP.getOutputStream());
-            inTCP = new ObjectInputStream(socketTCP.getInputStream());
-
-
-
-
-        } catch (UnknownHostException ex) {
-            throw new ConnexionException("Erreur de connexion", "Nom d'hôte du serveur inconnu.");
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-            throw new ConnexionException("Erreur de connexion", "Impossible de se connecter au serveur.");
-
-        }
-    }
-
-    public void startEcouteur() {
 
         communicationControle.setClient(this);
-        communicationControle.setInputStream(inTCP);
-        
-        threadTCP = new Thread(communicationControle, "Connexion TCP");
-        threadUDP = new Thread(communicationVideo, "Connexion UDP");
 
         communicationVideo.setClient(this);
-        communicationVideo.setDatagramSocket(socketUDP);
-        
+
+        threadTCP = new Thread(communicationControle);
+        threadUDP = new Thread(communicationVideo);
+
         threadTCP.start();
         threadUDP.start();
 
-        connexion = true;
+    }
+
+    public void connexion(String adresse) throws ConnexionException {
+        this.adresse = adresse;
+        try {
+            Socket s = new Socket(adresse, PORT_TCP);
+
+            inTCP = new ObjectInputStream(s.getInputStream());
+
+            outTCP = new ObjectOutputStream(s.getOutputStream());
+
+        } catch (IOException ex) {
+            connexion = false;
+            throw new ConnexionException("erreur", "de connexion au serveur");
+        }
     }
 
     public boolean authentification(Login login) throws ConnexionException {
-        ecrireObjet(login);
         try {
-            return inTCP.readBoolean();
+            ecrireObjet(login);
+            boolean ok = inTCP.readBoolean();
+
+            if (ok) {
+                communicationControle.setIn(inTCP);
+                communicationVideo.setDatagramSocket(socketUDP);
+                connexion = true;
+                return true;
+            }
         } catch (IOException ex) {
-            throw new ConnexionException("Erreur d'authentifiaction", "Impossible de s'authentifier.");
+            throw new ConnexionException("Erreur", "erreur de connexion");
         }
+        return false;
     }
 
     public void ecrireObjet(Object objet) {
@@ -82,8 +76,7 @@ public class Client {
             outTCP.writeObject(objet);
             outTCP.flush();
         } catch (IOException ex) {
-            System.out.println("L'écriture du flux TCP a été interrompue.");
-            connexionInterrompue();
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

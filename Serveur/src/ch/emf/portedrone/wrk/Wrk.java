@@ -82,7 +82,6 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
             info.infoDrone = drone.getInfo();
             ctrl.nouvelleInfo(info);
 
-            System.out.println(info.infoMindstorms.angle);
             serveurControle.envoyerInfo(info);
             try {
                 Thread.sleep(50);

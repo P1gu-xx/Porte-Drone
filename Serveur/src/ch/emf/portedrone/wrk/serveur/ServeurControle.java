@@ -30,10 +30,11 @@ public class ServeurControle extends Serveur {
 
     public ServeurControle(int portEcoute) {
         super();
-        loger=false;
+        loger = false;
         this.portEcoute = portEcoute;
         try {
             ss = new ServerSocket(portEcoute);
+            
             start();
         } catch (IOException ex) {
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
@@ -41,12 +42,12 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-        if (oos != null&&loger) {
+        if (oos != null && loger) {
             try {
-                System.out.println("envoye un objet");
+                //  System.out.println("envoye un objet");
                 oos.writeObject(info);
                 oos.flush();
-                System.out.println("ok");
+
             } catch (IOException ex) {
 
             }
@@ -61,6 +62,7 @@ public class ServeurControle extends Serveur {
             try {
                 ois.readObject();
             } catch (IOException ex) {
+                loger=false;
                 attendreConnexion();
             } catch (ClassNotFoundException ex) {
                 System.out.println("impossible de convertir l'objet");
@@ -81,18 +83,20 @@ public class ServeurControle extends Serveur {
 
     public void authentification() {
         try {
-
+            System.out.println("authentification");
             Login login = (Login) ois.readObject();
-
+            System.out.println("authentification :  donnee recu");
             if ("admin".equals(login.email) && "admin".equals(login.mdp)) {
                 System.out.println("connexion ok");
-                loger=true;
+                loger = true;
                 oos.writeBoolean(true);
-                
+                oos.flush();
             } else {
                 oos.writeBoolean(false);
                 authentification();
+                oos.flush();
             }
+
         } catch (IOException ex) {
             attendreConnexion();
         } catch (ClassNotFoundException ex) {

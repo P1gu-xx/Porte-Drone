@@ -5,11 +5,13 @@
  */
 package ch.emf.portedrone.beans;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ramosdasilm
  */
-public class Login {
+public class Login implements Serializable{
 
     public String email, mdp;
 

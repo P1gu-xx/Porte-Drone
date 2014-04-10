@@ -9,6 +9,8 @@ import ch.emf.portedrone.beans.Info;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -23,8 +25,9 @@ public class CommunicationControle implements Runnable{
     @Override
     public void run() {
         while(!exit) {
+            
             if(client.isConnexion()) {
-                try {
+                try {System.out.println("adsaf");
                     ecouteur.setInfo((Info)in.readObject());
                 } catch (ClassNotFoundException ex) {
                     System.out.println("Le message n'est pas un objet Info.");
@@ -32,6 +35,11 @@ public class CommunicationControle implements Runnable{
                     System.out.println("La lecture du flux TCP a été interrompue.");
                     ecouteur.reconnexion(client.getAdresse());
                 } 
+            }
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(CommunicationControle.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -49,13 +57,6 @@ public class CommunicationControle implements Runnable{
         this.client = client;
     }
     
-    public void setInputStream(InputStream in) {
-        try {
-            this.in = new ObjectInputStream(in);
-        } catch (IOException ex) {
-            System.out.println("Impossible de créer le lecteur d'objet.");
-        }
-    }
     
     public void setEcouteurReseau(IEcouteurReseau ecouteur) {
         this.ecouteur = ecouteur;
