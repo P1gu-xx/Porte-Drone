@@ -38,6 +38,7 @@ public class Mindstorms extends Thread {
                             try {
                                 ecouteur.setInfoMindstorms((InfoMindstorms) in.readObject());
                             } catch (ClassNotFoundException ex) {
+                                System.out.println(ex.getMessage());
                                 System.out.println("Le message n'est pas coherant.");
                             }
                             break;

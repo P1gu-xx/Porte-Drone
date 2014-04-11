@@ -19,5 +19,10 @@ public class Login implements Serializable{
         this.email = email;
         this.mdp = mdp;
     }
+    
+    public Login(Login login) {
+        email = login.email;
+        mdp = login.mdp;
+    }
 
 }

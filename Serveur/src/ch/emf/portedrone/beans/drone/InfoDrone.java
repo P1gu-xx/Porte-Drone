@@ -28,5 +28,16 @@ public class InfoDrone implements Serializable{
         this.connecter = connecter;
         this.decoller = decoller;
     }
+    
+    public InfoDrone(InfoDrone infoDrone) {
+        deplacementDrone = new DeplacementDrone(infoDrone.deplacementDrone);
+        hauteur = infoDrone.hauteur;
+        niveauDeBattrie = infoDrone.niveauDeBattrie;
+        reseauWifi = infoDrone.reseauWifi;
+        enVol = infoDrone.enVol;
+        enDecollage = infoDrone.enDecollage;
+        connecter = infoDrone.connecter;
+        decoller = infoDrone.decoller;
+    }
 
 }

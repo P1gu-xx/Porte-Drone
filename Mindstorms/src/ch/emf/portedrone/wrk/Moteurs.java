@@ -4,7 +4,7 @@
  */
 package ch.emf.portedrone.wrk;
 
-import ch.emf.portedrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;

@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author PeclatJ
  */
-public class Client {
+public class Client implements IClient {
 
     public Client() {
         communicationControle = new CommunicationControle();
@@ -106,14 +106,17 @@ public class Client {
         }
     }
 
+    @Override
     public void connexionInterrompue() {
         connexion = false;
     }
 
+    @Override
     public boolean isConnexion() {
         return connexion;
     }
 
+    @Override
     public String getAdresse() {
         return adresse;
     }

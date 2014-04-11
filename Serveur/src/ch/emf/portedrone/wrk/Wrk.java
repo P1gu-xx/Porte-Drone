@@ -7,6 +7,7 @@ package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.drone.InfoDrone;
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import ch.emf.portedrone.beans.mindstorms.Echo;
 import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
@@ -21,6 +22,7 @@ import ch.emf.portedrone.wrk.serveur.IEcouteurServeurVideo;
 import ch.emf.portedrone.wrk.serveur.ServeurControle;
 import ch.emf.portedrone.wrk.serveur.ServeurVideo;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -41,13 +43,15 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     public Wrk(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
-        info = new Info();
         running = true;
 
+        info = new Info();
+        info.infoDrone = new InfoDrone(new DeplacementDrone(0, 0, 0, 0), 0, 0, 0, false, false, false, false);
+        info.infoMindstorms = new InfoMindstorms(new DeplacementMindstorms(0, 0), new ArrayList<Echo>(), 0f, 0f);
         drone = new Drone(this);
         mindstorms = new Mindstorms(this);
         serveurControle = new ServeurControle();
-        
+
     }
 
     @Override
@@ -67,14 +71,11 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     }
 
     public void traiterLesDonnees() {
-
-        info = new Info();
-        
         while (running) {
             ctrl.nouvelleInfo(info);
             serveurControle.envoyerInfo(info);
             try {
-                Thread.sleep(50);
+                Thread.sleep(20);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Wrk.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -83,57 +84,55 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void droneImageRecu(BufferedImage img) {
-        
     }
 
     @Override
-    public void droneAltitudeRecu(int alt) {
-        info.infoDrone.hauteur = alt;
+    public void droneAltitudeRecu(int altitude) {
+        if (info.infoDrone != null) {
+            info.infoDrone.hauteur = altitude;
+        }
     }
 
     @Override
     public void droneNiveauDeBattrieRecu(int i) {
-        info.infoDrone.niveauDeBattrie = i;
+        if (info.infoDrone != null) {
+            info.infoDrone.niveauDeBattrie = i;
+        }
     }
 
     @Override
     public void droneNiveauDeReseauWifiRecu(long l) {
-        info.infoDrone.reseauWifi = l;
+        if (info.infoDrone != null) {
+            info.infoDrone.reseauWifi = l;
+        }
     }
 
     @Override
     public void droneDeconnecter() {
-        
     }
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
-        
     }
 
     @Override
     public void faireDecollerDrone() {
-        
     }
 
     @Override
     public void changerLaCamera() {
-        
     }
 
     @Override
     public void faireBougerMindstorms(DeplacementMindstorms drl) {
-        
     }
 
     @Override
     public void faireUnAtterisageAutomatique() {
-        
     }
 
     @Override
-    public void setInfoMindstorms(InfoMindstorms info) {
-        this.info.infoMindstorms = info;
+    public void setInfoMindstorms(InfoMindstorms infoMindstorms) {
+        info.infoMindstorms = new InfoMindstorms(infoMindstorms);
     }
-
 }

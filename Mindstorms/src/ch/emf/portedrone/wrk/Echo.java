@@ -8,7 +8,7 @@ package ch.emf.portedrone.wrk;
  *
  * @author PeclatJ
  */
-public class Echo extends ch.emf.portedrone.beans.Echo {
+public class Echo extends ch.emf.portedrone.beans.mindstorms.Echo {
 
     public Echo(double distance, double angle) {
         super(distance, angle);

@@ -21,5 +21,12 @@ public class DeplacementDrone implements Serializable{
         this.vitesseZ = vitesseZ;
         this.spin = spin;
     }
+    
+    public DeplacementDrone(DeplacementDrone deplacementDrone) {
+        vitesseX = deplacementDrone.vitesseX;
+        vitesseY = deplacementDrone.vitesseY;
+        vitesseZ = deplacementDrone.vitesseZ;
+        spin = deplacementDrone.spin;
+    }
 
 }

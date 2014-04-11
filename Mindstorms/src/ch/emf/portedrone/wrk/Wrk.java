@@ -4,8 +4,8 @@
  */
 package ch.emf.portedrone.wrk;
 
-import ch.emf.portedrone.beans.DeplacementMindstorms;
-import ch.emf.portedrone.beans.InfoMindstorms;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
+import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
 import ch.emf.portedrone.wrk.reseau.IEcouteurServeur;
 import ch.emf.portedrone.wrk.reseau.Serveur;
 import java.util.ArrayList;
@@ -34,12 +34,10 @@ public class Wrk implements IEcouteurServeur, KeyListener {
 
     public void start() {
         serveur.start();
-
-        InfoMindstorms info = new InfoMindstorms();
-        info.deplacementMindstorms = new DeplacementMindstorms(0, 0);
-
+        InfoMindstorms infoMindstorms = new InfoMindstorms();
+        infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(0, 0);
+        
         compteur = 0;
-
         while (!exit) {
             radar.update();
             if (radar.isEchoFound()) {
@@ -57,12 +55,17 @@ public class Wrk implements IEcouteurServeur, KeyListener {
 
             // Une fois sur 100
             if (compteur % 100 == 0) {
-                info.angle = (float) Math.toRadians(radar.getRotation());
-                info.batterie = Battery.getBatteryCurrent();
-                info.echo = new ArrayList(listeEcho);
-                info.deplacementMindstorms.vitesseRoueDroite = moteurs.getSpeedWheelRight();
-                info.deplacementMindstorms.vitesseRoueGauche = moteurs.getSpeedWheelLeft();
-                serveur.ecrireObjet(0, info);
+                infoMindstorms.angle = (float) Math.toRadians(radar.getRotation());
+                infoMindstorms.batterie = Battery.getBatteryCurrent();
+                infoMindstorms.echo = new ArrayList();
+                for(Echo echo : listeEcho) {
+                    infoMindstorms.echo.add(new ch.emf.portedrone.beans.mindstorms.Echo(echo.distance, echo.angle));
+                }
+                infoMindstorms.deplacementMindstorms.vitesseRoueDroite = moteurs.getSpeedWheelRight();
+                infoMindstorms.deplacementMindstorms.vitesseRoueGauche = moteurs.getSpeedWheelLeft();
+                
+                InfoMindstorms copy = new InfoMindstorms(infoMindstorms);
+                serveur.ecrireObjet(0, copy);
             }
 
             Delay.msDelay(10);

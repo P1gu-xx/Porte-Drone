@@ -7,7 +7,6 @@ package ch.emf.portedrone.wrk.reseau;
 
 import ch.emf.portedrone.beans.Info;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,9 +24,8 @@ public class CommunicationControle implements Runnable{
     @Override
     public void run() {
         while(!exit) {
-            
             if(client.isConnexion()) {
-                try {System.out.println("adsaf");
+                try {
                     ecouteur.setInfo((Info)in.readObject());
                 } catch (ClassNotFoundException ex) {
                     System.out.println("Le message n'est pas un objet Info.");
@@ -53,7 +51,7 @@ public class CommunicationControle implements Runnable{
         }
     }
     
-    public void setClient(Client client) {
+    public void setClient(IClient client) {
         this.client = client;
     }
     
@@ -66,11 +64,9 @@ public class CommunicationControle implements Runnable{
         this.in = in;
     }
     
-    
-
     private ObjectInputStream in;
     private boolean exit;
-    private Client client;
+    private IClient client;
     private IEcouteurReseau ecouteur;
     
 }

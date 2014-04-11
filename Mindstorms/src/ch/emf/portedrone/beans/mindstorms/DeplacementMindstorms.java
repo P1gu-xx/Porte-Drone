@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portedrone.beans;
+package ch.emf.portedrone.beans.mindstorms;
 
 import java.io.Serializable;
 
@@ -18,6 +18,11 @@ public class DeplacementMindstorms implements Serializable{
     public DeplacementMindstorms(int vitesseRoueDroite, int vitesseRoueGauche) {
         this.vitesseRoueDroite = vitesseRoueDroite;
         this.vitesseRoueGauche = vitesseRoueGauche;
+    }
+    
+    public DeplacementMindstorms(DeplacementMindstorms deplacementMindstorms) {
+        vitesseRoueDroite = deplacementMindstorms.vitesseRoueDroite;
+        vitesseRoueGauche = deplacementMindstorms.vitesseRoueGauche;
     }
 
 }

@@ -14,5 +14,5 @@ import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
  */
 public interface IEcouteurMindstorms {
     
-    public void setInfoMindstorms(InfoMindstorms info);
+    public void setInfoMindstorms(InfoMindstorms infoMindstorms);
 }

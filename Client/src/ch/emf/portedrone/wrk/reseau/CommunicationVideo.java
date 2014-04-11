@@ -39,7 +39,7 @@ public class CommunicationVideo implements Runnable{
         in.close();
     }
     
-    public void setClient(Client client) {
+    public void setClient(IClient client) {
         this.client = client;
     }
     
@@ -53,7 +53,7 @@ public class CommunicationVideo implements Runnable{
     
     private DatagramSocket in;
     private boolean exit;
-    private Client client;
+    private IClient client;
     private DatagramPacket donnees;
     private IEcouteurReseau ecouteur;
     

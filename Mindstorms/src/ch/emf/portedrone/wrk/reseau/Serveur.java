@@ -4,7 +4,7 @@
  */
 package ch.emf.portedrone.wrk.reseau;
 
-import ch.emf.portedrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -34,11 +34,12 @@ public class Serveur extends Thread {
         while (!exit) {
             try {
                 client = serveur.accept();
+                System.out.println("Client accepté");
                 try {
                     out = new ObjectOutputStream(client.getOutputStream());
                     in = new ObjectInputStream(client.getInputStream());
                     connexion = true;
-                    while (!connexion) {
+                    while (connexion) {
                         try {
                             switch (in.readInt()) {
                                 case 0:
@@ -78,6 +79,7 @@ public class Serveur extends Thread {
     }
 
     public void ecrireObjet(int type, Object objet) {
+        System.out.println("Ecrire");
         if (!exit && connexion) {
             try {
                 out.writeInt(type);

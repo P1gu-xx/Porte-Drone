@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ch.emf.portedrone.beans;
+package ch.emf.portedrone.beans.mindstorms;
 
 import java.io.Serializable;
 
@@ -18,6 +18,11 @@ public class Echo implements Serializable {
     public Echo(double distance, double angle) {
         this.distance = distance;
         this.angle = angle;
+    }
+    
+    public Echo(Echo echo) {
+        distance = echo.distance;
+        angle = echo.angle;
     }
 
 }

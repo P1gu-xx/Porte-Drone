@@ -19,5 +19,10 @@ public class DeplacementMindstorms implements Serializable{
         this.vitesseRoueDroite = vitesseRoueDroite;
         this.vitesseRoueGauche = vitesseRoueGauche;
     }
+    
+    public DeplacementMindstorms(DeplacementMindstorms deplacementMindstorms) {
+        vitesseRoueDroite = deplacementMindstorms.vitesseRoueDroite;
+        vitesseRoueGauche = deplacementMindstorms.vitesseRoueGauche;
+    }
 
 }

@@ -14,7 +14,20 @@ import java.io.Serializable;
  * @author ramosdasilm
  */
 public class Info implements Serializable {
+    
+    public Info() {
+    }
 
+    public Info(InfoDrone infoDrone, InfoMindstorms infoMindstorms) {
+        this.infoDrone = infoDrone;
+        this.infoMindstorms = infoMindstorms;
+    }
+    
+    public Info(Info info) {
+        this.infoDrone = new InfoDrone(info.infoDrone);
+        this.infoMindstorms = new InfoMindstorms(info.infoMindstorms);
+    }
+    
     public InfoDrone infoDrone;
     public InfoMindstorms infoMindstorms;
 }

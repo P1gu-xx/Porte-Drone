@@ -42,10 +42,11 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
+        System.out.println("Info : angle=" + info.infoMindstorms.angle);
         if (oos != null && loger) {
             try {
-                //  System.out.println("envoye un objet");
-                oos.writeObject(info);
+                Info copy = new Info(info);
+                oos.writeObject(copy);
                 oos.flush();
 
             } catch (IOException ex) {

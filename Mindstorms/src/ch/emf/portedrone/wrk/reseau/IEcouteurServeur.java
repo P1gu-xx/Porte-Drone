@@ -4,7 +4,7 @@
  */
 package ch.emf.portedrone.wrk.reseau;
 
-import ch.emf.portedrone.beans.DeplacementMindstorms;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 
 /**
  *

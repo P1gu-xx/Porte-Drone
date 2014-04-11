@@ -19,5 +19,10 @@ public class Echo implements Serializable {
         this.distance = distance;
         this.angle = angle;
     }
+    
+    public Echo(Echo echo) {
+        distance = echo.distance;
+        angle = echo.angle;
+    }
 
 }
