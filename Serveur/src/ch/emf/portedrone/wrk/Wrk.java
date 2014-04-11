@@ -30,7 +30,6 @@ import java.util.logging.Logger;
  */
 public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteurServeurControle, IEcouteurServeurVideo {
 
-    private final int portEcoute = 55584;
     private ICtrlWrk ctrl;
     private Drone drone;
     private Mindstorms mindstorms;
@@ -46,42 +45,33 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
         running = true;
 
         drone = new Drone(this);
-        serveurControle = new ServeurControle(portEcoute);
-        drone.connecter();
+        mindstorms = new Mindstorms(this);
+        serveurControle = new ServeurControle();
+        
     }
 
+    @Override
     public boolean start() {
+        mindstorms.start();
+        drone.start();
         traiterLesDonnees();
         return true;
     }
 
     @Override
-    public void stop() {
+    public void exit() {
         running = false;
         serveurControle.setRunning(false);
-        drone.stop();
+        drone.exit();
+        mindstorms.exit();
     }
 
     public void traiterLesDonnees() {
 
-        float i = 0;
+        info = new Info();
+        
         while (running) {
-            InfoMindstorms infoMindstorms = new InfoMindstorms();
-            infoMindstorms.batterie = 2.5f;
-            infoMindstorms.angle = 90;
-            infoMindstorms.echo.add(new Echo(0.0, 20.0));
-            infoMindstorms.echo.add(new Echo(0.25, 20.0));
-            infoMindstorms.echo.add(new Echo(0.5, 20.0));
-            infoMindstorms.echo.add(new Echo(0.75, 20.0));
-            infoMindstorms.echo.add(new Echo(1, 20.0));
-            infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(80, 95);
-            i = i + 0.01f;
-            infoMindstorms.angle = i;
-            info = new Info();
-            info.infoMindstorms = infoMindstorms;
-            info.infoDrone = drone.getInfo();
             ctrl.nouvelleInfo(info);
-
             serveurControle.envoyerInfo(info);
             try {
                 Thread.sleep(50);
@@ -93,52 +83,57 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void droneImageRecu(BufferedImage img) {
-
+        
     }
 
     @Override
     public void droneAltitudeRecu(int alt) {
-
+        info.infoDrone.hauteur = alt;
     }
 
     @Override
     public void droneNiveauDeBattrieRecu(int i) {
-
+        info.infoDrone.niveauDeBattrie = i;
     }
 
     @Override
     public void droneNiveauDeReseauWifiRecu(long l) {
-
+        info.infoDrone.reseauWifi = l;
     }
 
     @Override
     public void droneDeconnecter() {
-
+        
     }
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
-
+        
     }
 
     @Override
     public void faireDecollerDrone() {
-
+        
     }
 
     @Override
     public void changerLaCamera() {
-
+        
     }
 
     @Override
-    public void faireBougerRobotLego(DeplacementMindstorms drl) {
-
+    public void faireBougerMindstorms(DeplacementMindstorms drl) {
+        
     }
 
     @Override
-    public void faireUnAtterisageAutaumatique() {
+    public void faireUnAtterisageAutomatique() {
+        
+    }
 
+    @Override
+    public void setInfoMindstorms(InfoMindstorms info) {
+        this.info.infoMindstorms = info;
     }
 
 }

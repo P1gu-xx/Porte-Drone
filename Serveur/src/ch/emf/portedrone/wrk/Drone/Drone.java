@@ -64,7 +64,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      *
      * @return si il n'y a pas eu d'erreur retourn true sinon false.
      */
-    public boolean connecter() {
+    public boolean start() {
         try {
             drone = new ARDrone();
             drone.start();
@@ -147,7 +147,6 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void receivedAltitude(int i) {
-        info.hauteur = i;
         ecouteurDrone.droneAltitudeRecu(i);
     }
 
@@ -157,7 +156,6 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void batteryLevelChanged(int i) {
-        info.niveauDeBattrie = i;
         ecouteurDrone.droneNiveauDeBattrieRecu(i);
     }
 
@@ -167,7 +165,6 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void received(long l) {
-        info.reseauWifi = l;
         ecouteurDrone.droneNiveauDeReseauWifiRecu(l);
     }
 
@@ -192,7 +189,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         }
     }
 
-    public void stop() {
+    public void exit() {
         if (drone != null) {
             drone.getCommandManager().landing();
             drone.stop();

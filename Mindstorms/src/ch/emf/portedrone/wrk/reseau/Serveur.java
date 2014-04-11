@@ -69,7 +69,9 @@ public class Serveur extends Thread {
     public void exit() {
         exit = true;
         try {
-            serveur.close();
+            if(serveur != null) {
+                serveur.close();
+            }
         } catch (IOException ex) {
             System.out.println("Impossible de fermer le serveur.");
         }

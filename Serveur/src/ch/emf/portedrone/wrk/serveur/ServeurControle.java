@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  */
 public class ServeurControle extends Serveur {
 
+    private final int PORT = 55584;
+    
     private IEcouteurServeurControle ecouteur;
     private ServerSocket ss;
     private Socket s;
@@ -28,13 +30,11 @@ public class ServeurControle extends Serveur {
     private ObjectInputStream ois;
     private boolean loger;
 
-    public ServeurControle(int portEcoute) {
+    public ServeurControle() {
         super();
         loger = false;
-        this.portEcoute = portEcoute;
         try {
-            ss = new ServerSocket(portEcoute);
-            
+            ss = new ServerSocket(PORT);
             start();
         } catch (IOException ex) {
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,10 +107,14 @@ public class ServeurControle extends Serveur {
 
     }
 
+    @Override
     public void setRunning(boolean running) {
         try {
             this.running = running;
-            s.close();
+            if(s != null) {
+                s.close();
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
         }
