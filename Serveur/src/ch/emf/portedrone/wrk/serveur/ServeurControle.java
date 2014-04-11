@@ -42,7 +42,6 @@ public class ServeurControle extends Serveur {
     }
 
     public void envoyerInfo(Info info) {
-        System.out.println("Info : angle=" + info.infoMindstorms.angle);
         if (oos != null && loger) {
             try {
                 Info copy = new Info(info);

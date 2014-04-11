@@ -79,12 +79,12 @@ public class Serveur extends Thread {
     }
 
     public void ecrireObjet(int type, Object objet) {
-        System.out.println("Ecrire");
         if (!exit && connexion) {
             try {
                 out.writeInt(type);
                 out.writeObject(objet);
                 out.flush();
+                System.out.println("Est écrit");
             } catch (IOException ex) {
                 connexion = false;
             }
