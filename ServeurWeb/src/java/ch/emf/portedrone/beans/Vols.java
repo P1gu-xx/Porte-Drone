@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package ch.emf.portedrone.beans;
 
+import ch.emf.portedrone.wrk.Wrk;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -38,6 +38,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Vols.findByTempsFin", query = "SELECT v FROM Vols v WHERE v.tempsFin = :tempsFin"),
     @NamedQuery(name = "Vols.findByStatus", query = "SELECT v FROM Vols v WHERE v.status = :status")})
 public class Vols implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -140,5 +141,9 @@ public class Vols implements Serializable {
     public String toString() {
         return "ch.emf.portedrone.beans.Vols[ pkVol=" + pkVol + " ]";
     }
-    
+
+    public String toJson() {
+        return "{\"id\":" + pkVol + ",\"heureDecolage\":\"" +  Wrk.convertDate(tempsDepart) + "\",\"heureAtterisage\":\"" + Wrk.convertDate(tempsFin) + "\",\"login\":\"" + fkLogin.getLogin() + "\"}";
+    }
+
 }

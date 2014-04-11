@@ -64,6 +64,11 @@ public class Index extends HttpServlet {
                     request.getSession().setAttribute("connecter", "false");
 
                     break;
+                case "lesVols":
+                    String msg=wrk.donnerListDesVols();
+                    System.out.println(msg);
+                    out.print(msg);
+                    break;
                 default:
                     out.print("erreur");
             }

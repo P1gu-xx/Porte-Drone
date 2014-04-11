@@ -1,0 +1,19 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Date de décollage</th>
+            <th>Date d'atterisage</th>
+            <th>Utilisateur</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="vol in lesVols">
+            <td>{{vol.id}}</td>
+            <td>{{vol.heureDecolage}}</td>
+            <td>{{vol.heureAtterisage}}</td>
+            <td>{{vol.login}}</td>
+        </tr>
+    </tbody>
+
+</table>

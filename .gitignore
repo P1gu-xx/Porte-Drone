@@ -20,3 +20,6 @@ hs_err_pid*
 /Mindstorms/build/
 /Mindstorms/dist/
 /ServeurWeb/nbproject/private/
+/ServeurWeb/build/
+/ServeurWeb/dist/
+/ClientWeb/nbproject/private/

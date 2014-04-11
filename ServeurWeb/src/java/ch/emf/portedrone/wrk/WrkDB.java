@@ -5,12 +5,13 @@
  */
 package ch.emf.portedrone.wrk;
 
+import ch.emf.dao.JpaDao;
+import ch.emf.dao.filtering.Search;
 import ch.emf.portedrone.beans.Logins;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+import ch.emf.portedrone.beans.Vols;
+import com.google.gson.Gson;
+import java.util.List;
 import javax.persistence.NoResultException;
-import javax.persistence.Persistence;
-import javax.persistence.Query;
 
 /**
  *
@@ -18,27 +19,60 @@ import javax.persistence.Query;
  */
 public class WrkDB {
 
-    private EntityManagerFactory emf;
-    private EntityManager em;
+    private static WrkDB bd;
+    private ch.emf.dao.JpaDao jpaDao;
+    private Gson gson;
 
-    public WrkDB() {
-        emf = Persistence.createEntityManagerFactory("ServeurWebPU");
-        em = emf.createEntityManager();
+    private WrkDB() {
+        try {
+            jpaDao = new JpaDao();
+            jpaDao.open("ServeurWebPU");
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    /**
+     * Permet de recuperer l'instance de la bd. si elle n'est pas creer va la
+     * creer tout seul.
+     *
+     * @return
+     */
+    public static WrkDB getInstance() {
+        if (bd == null) {
+            bd = new WrkDB();
+        }
+        return bd;
     }
 
     public Logins trouverLogin(String email, String mdp) {
-        Query query = em.createQuery("select p from Logins p where p.login='" + email + "' and p.password='" + mdp + "'");
+        Search s = new Search(Logins.class);
+        s.addFilterEqual("login", email);
+        s.addFilterEqual("password", mdp);
         Logins login = null;
         try {
-            login = (Logins) query.getSingleResult();
+            login = (Logins) jpaDao.getSingleResult(s);
         } catch (NoResultException e) {
-            
-        }catch(Exception e){
-            
+
+        } catch (Exception e) {
+
         }
         return login;
     }
-    
-    
+
+    public List<Vols> donnerLesVols() {
+        List<Vols> lesVols = null;
+
+        try {
+            lesVols = jpaDao.getList(Vols.class);
+            System.out.println(lesVols);
+        } catch (NoResultException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        return lesVols;
+    }
 
 }
