@@ -44,7 +44,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
         info = new Info();
         running = true;
 
-        //drone = new Drone(this);
+        drone = new Drone(this);
         mindstorms = new Mindstorms(this);
         serveurControle = new ServeurControle();
         
@@ -53,7 +53,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     @Override
     public boolean start() {
         mindstorms.start();
-        //drone.start();
+        drone.start();
         traiterLesDonnees();
         return true;
     }

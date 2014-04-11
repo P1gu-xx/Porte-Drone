@@ -111,7 +111,10 @@ public class ServeurControle extends Serveur {
     public void setRunning(boolean running) {
         try {
             this.running = running;
-            s.close();
+            if(s != null) {
+                s.close();
+            }
+            
         } catch (IOException ex) {
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
         }

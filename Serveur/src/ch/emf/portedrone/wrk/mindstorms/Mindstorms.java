@@ -69,7 +69,9 @@ public class Mindstorms extends Thread {
     public void exit() {
         exit = true;
         try {
-            socket.close();
+            if(socket != null) {
+                socket.close();
+            }
         } catch (IOException ex) {
             System.out.println("Impossible de fermer le serveur.");
         }
