@@ -31,7 +31,7 @@ public class Ctrl implements ICtrlWrk, ICtrlIhm {
     
     @Override
     public void exit() {
-        wrk.stop();
+        wrk.exit();
     }
     
     @Override

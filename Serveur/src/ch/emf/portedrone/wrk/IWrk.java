@@ -13,6 +13,6 @@ public interface IWrk {
 
     boolean start();
 
-    void stop();
+    void exit();
 
 }

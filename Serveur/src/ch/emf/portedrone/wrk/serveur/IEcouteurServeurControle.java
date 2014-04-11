@@ -17,6 +17,6 @@ public interface IEcouteurServeurControle {
     void faireBougerDrone(DeplacementDrone dd);
     void faireDecollerDrone();
     void changerLaCamera();
-    void faireBougerRobotLego(DeplacementMindstorms drl);
-    void faireUnAtterisageAutaumatique();
+    void faireBougerMindstorms(DeplacementMindstorms drl);
+    void faireUnAtterisageAutomatique();
 }

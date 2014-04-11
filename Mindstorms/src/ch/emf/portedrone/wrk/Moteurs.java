@@ -39,6 +39,14 @@ public class Moteurs {
         }
     }
     
+    public int getSpeedWheelLeft() {
+        return wheelMotorLeft.getSpeed();
+    }
+    
+    public int getSpeedWheelRight() {
+        return wheelMotorRight.getSpeed();
+    }
+    
     private static final Port MOTOR_PORT_LEFT = MotorPort.B;
     private static final Port MOTOR_PORT_RIGHT = MotorPort.C;
     

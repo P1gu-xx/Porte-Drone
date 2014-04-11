@@ -6,10 +6,13 @@
 
 package ch.emf.portedrone.wrk.mindstorms;
 
+import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
+
 /**
  *
  * @author ramosdasilm
  */
 public interface IEcouteurMindstorms {
     
+    public void setInfoMindstorms(InfoMindstorms info);
 }
