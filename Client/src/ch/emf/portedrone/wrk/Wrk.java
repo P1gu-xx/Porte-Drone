@@ -30,7 +30,6 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
     @Override
     public void update() {
         while (!exit) {
-
             if (manette.isReady()&&client.isConnexion()) {
                 System.out.println("Manette");
                 manette.poll();
@@ -50,9 +49,6 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                 } catch (InterruptedException ex) {
                     System.out.println("Interruption");
                 }
-
-            } else {
-                System.out.println("La manette n'est pas connectée");
             }
         }
     }
@@ -101,5 +97,4 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
     private boolean droneSelectionner;
 
     private boolean exit;
-
 }
