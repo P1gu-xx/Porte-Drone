@@ -53,7 +53,7 @@ public class Wrk implements IEcouteurServeur, KeyListener {
             }
 
             // Une fois sur 100
-            if (compteur % 100 == 0) {
+            if (compteur % 2 == 0) {
                 infoMindstorms.angle = (float) Math.toRadians(radar.getRotation());
                 infoMindstorms.batterie = Battery.getBatteryCurrent();
                 infoMindstorms.echo = new ArrayList();
@@ -64,7 +64,6 @@ public class Wrk implements IEcouteurServeur, KeyListener {
                 infoMindstorms.deplacementMindstorms.vitesseRoueGauche = moteurs.getSpeedWheelLeft();
                 
                 InfoMindstorms copy = new InfoMindstorms(infoMindstorms);
-                System.out.println("Ecrit: " + copy.angle);
                 serveur.ecrireObjet(0, copy);
             }
 
@@ -75,11 +74,9 @@ public class Wrk implements IEcouteurServeur, KeyListener {
 
     public void exit() {
         exit = true;
-        System.out.println("On quitte");
         try {
             serveur.exit();
             serveur.join();
-            System.out.println("Le thread serveur est ferme");
         } catch (InterruptedException ex) {
             System.out.println("Impossible de joindre le thread");
         }

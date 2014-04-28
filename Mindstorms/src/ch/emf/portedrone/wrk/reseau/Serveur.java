@@ -48,6 +48,7 @@ public class Serveur extends Thread {
                                 default:
                                     System.out.println("Le message a ete mal envoye.");
                             }
+                            System.out.println("l'attente est finie");
                         } catch (IOException ex) {
                             System.out.println("Le flux entrant TCP a été interrompu.");
                             connexion = false;
@@ -72,6 +73,7 @@ public class Serveur extends Thread {
         try {
             if(serveur != null) {
                 serveur.close();
+                in.close();
             }
         } catch (IOException ex) {
             System.out.println("Impossible de fermer le serveur.");

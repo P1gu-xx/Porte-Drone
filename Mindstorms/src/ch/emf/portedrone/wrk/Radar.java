@@ -29,8 +29,8 @@ public class Radar {
         
         // Moteur
         radarMotor = new EV3MediumRegulatedMotor(MOTOR_PORT);
-        radarMotor.setSpeed(500);
-        radarMotor.setAcceleration(200);
+        radarMotor.setSpeed(350);
+        radarMotor.setAcceleration(30);
     }
     
     public void update() {
@@ -40,7 +40,7 @@ public class Radar {
         // Bouge le moteur.
         if(echoFound) {
             //radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
-            radarMotor.rotate((int)echoAngle, true);
+            radarMotor.rotate((int)echoAngle/2, true);
         }
         
     }
