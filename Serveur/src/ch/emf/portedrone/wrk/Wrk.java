@@ -46,13 +46,13 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     public Wrk(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
         running = true;
-
+        wrkHttp = new WrkHttp();
         info = new Info();
         info.infoDrone = new InfoDrone(new DeplacementDrone(0, 0, 0, 0), 0, 0, 0, false, false, false, false);
         info.infoMindstorms = new InfoMindstorms(new DeplacementMindstorms(0, 0), new ArrayList<Echo>(), 0f, 0f);
         drone = new Drone(this);
         mindstorms = new Mindstorms(this);
-        serveurControle = new ServeurControle();
+        serveurControle = new ServeurControle(this);
 
     }
 

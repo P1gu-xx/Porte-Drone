@@ -31,9 +31,11 @@ public class ServeurControle extends Serveur {
     private ObjectInputStream ois;
     private boolean loger;
 
-    public ServeurControle() {
+    public ServeurControle(IEcouteurServeurControle ecouteur) {
         super();
+        running = true;
         loger = false;
+        this.ecouteur = ecouteur;
         try {
             ss = new ServerSocket(PORT);
             start();
@@ -123,6 +125,7 @@ public class ServeurControle extends Serveur {
             }
 
         } catch (IOException ex) {
+            System.out.println(ex);
             attendreConnexion();
         } catch (ClassNotFoundException ex) {
             System.out.println("impossible de convertir l'objet");

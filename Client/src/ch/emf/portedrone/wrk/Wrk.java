@@ -31,8 +31,8 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
     public void update() {
         while (!exit) {
 
-            if (manette.isReady()) {
-
+            if (manette.isReady()&&client.isConnexion()) {
+                System.out.println("Manette");
                 manette.poll();
 
                 if (manette.getValue(ManetteDualshock3.CROIX) == 1.0f) {

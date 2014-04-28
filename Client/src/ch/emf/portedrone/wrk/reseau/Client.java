@@ -82,6 +82,7 @@ public class Client implements IClient {
         try {
             outTCP.writeObject(objet);
             outTCP.flush();
+            System.out.println("objet envoye");
         } catch (IOException ex) {
             Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
         }
