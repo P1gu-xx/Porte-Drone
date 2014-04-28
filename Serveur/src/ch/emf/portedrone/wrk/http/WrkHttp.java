@@ -30,16 +30,7 @@ public class WrkHttp {
         CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
     }
 
-    public static void main(String[] args) {
-        try {
-            boolean ok = new WrkHttp().controlleConnexion(new Login("p1gu", "emf123"));
-            System.out.println(ok);
-        } catch (Exception ex) {
-            Logger.getLogger(WrkHttp.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private boolean controlleConnexion(Login login) {
+    public boolean controlleConnexion(Login login) {
         try {
             String url = "http://localhost:8080/ServeurWeb/Index?action=connexion&login=" + login.email + "&mdp=" + login.mdp + "";
             URL obj = new URL(url);

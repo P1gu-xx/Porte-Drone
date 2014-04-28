@@ -6,6 +6,7 @@
 package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.Info;
+import ch.emf.portedrone.beans.Login;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
 import ch.emf.portedrone.beans.drone.InfoDrone;
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
@@ -116,15 +117,20 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
         System.out.println("ordre de deplacement recu");
+        drone.bouger(dd);
     }
 
     @Override
     public void faireDecollerDrone() {
-        if (dateDecollage == null) {
-            dateDecollage = new Date();
-        } else {
-            wrkHttp.enregistrerVol(dateDecollage, new Date());
-            dateDecollage = null;
+        if (!info.infoDrone.enDecollage) {
+            if (dateDecollage == null) {
+                dateDecollage = new Date();
+
+            } else {
+                wrkHttp.enregistrerVol(dateDecollage, new Date());
+                dateDecollage = null;
+            }
+            drone.decoller();
         }
     }
 
@@ -147,5 +153,10 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     public void setInfoMindstorms(InfoMindstorms infoMindstorms) {
         info.infoMindstorms = new InfoMindstorms(infoMindstorms);
         System.out.println("" + infoMindstorms.angle);
+    }
+
+    @Override
+    public boolean controllerLogin(Login l) {
+        return wrkHttp.controlleConnexion(l);
     }
 }

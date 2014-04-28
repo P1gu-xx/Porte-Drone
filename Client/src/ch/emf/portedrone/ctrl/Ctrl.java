@@ -23,7 +23,7 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
     
     public void start() {
         try {
-            wrk.connexion("127.0.0.1");
+            wrk.connexion("172.23.86.237");
             ihmConnexion.setVisible(true);
             wrk.update();
         } catch (ConnexionException ce) {

@@ -68,7 +68,7 @@ public class ServeurControle extends Serveur {
                         ecouteur.faireDecollerDrone();
                         break;
                     case 1:
-                        ecouteur.faireBougerDrone((DeplacementDrone)ois.readObject());
+                        ecouteur.faireBougerDrone((DeplacementDrone) ois.readObject());
                         break;
                     case 2:
                         ecouteur.changerLaCamera();
@@ -112,7 +112,7 @@ public class ServeurControle extends Serveur {
             System.out.println("authentification");
             Login login = (Login) ois.readObject();
             System.out.println("authentification :  donnee recu");
-            if ("admin".equals(login.email) && "admin".equals(login.mdp)) {
+            if (ecouteur.controllerLogin(login)) {
                 System.out.println("connexion ok");
                 loger = true;
                 oos.writeBoolean(true);
