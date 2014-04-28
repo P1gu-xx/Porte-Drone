@@ -23,5 +23,7 @@ public interface IWrkCtrl {
      * @throws ConnexionException
      */
     public void authentification(String login, String motDePasse) throws ConnexionException;
+
+    public void update();
     
 }

@@ -69,6 +69,15 @@ public class Client implements IClient {
         return false;
     }
 
+    public void ecrireInt(int i) {
+        try {
+            outTCP.writeInt(i);
+            outTCP.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void ecrireObjet(Object objet) {
         try {
             outTCP.writeObject(objet);

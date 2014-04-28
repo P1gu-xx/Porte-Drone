@@ -7,6 +7,7 @@ package ch.emf.portedrone.wrk.serveur;
 
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.Login;
+import ch.emf.portedrone.beans.drone.DeplacementDrone;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -22,7 +23,7 @@ import java.util.logging.Logger;
 public class ServeurControle extends Serveur {
 
     private final int PORT = 55584;
-    
+
     private IEcouteurServeurControle ecouteur;
     private ServerSocket ss;
     private Socket s;
@@ -60,9 +61,32 @@ public class ServeurControle extends Serveur {
         attendreConnexion();
         while (running) {
             try {
-                ois.readObject();
+                switch (ois.readInt()) {
+                    case 0:
+                        ecouteur.faireDecollerDrone();
+                        break;
+                    case 1:
+                        ecouteur.faireBougerDrone((DeplacementDrone)ois.readObject());
+                        break;
+                    case 2:
+                        ecouteur.changerLaCamera();
+                        break;
+                    case 3:
+                        ecouteur.faireUnAtterisageAutomatique();
+                        break;
+                    case 4:
+
+                        break;
+                    case 5:
+
+                        break;
+
+                    default:
+                        throw new AssertionError();
+                }
+
             } catch (IOException ex) {
-                loger=false;
+                loger = false;
                 attendreConnexion();
             } catch (ClassNotFoundException ex) {
                 System.out.println("impossible de convertir l'objet");
@@ -111,10 +135,10 @@ public class ServeurControle extends Serveur {
     public void setRunning(boolean running) {
         try {
             this.running = running;
-            if(s != null) {
+            if (s != null) {
                 s.close();
             }
-            
+
         } catch (IOException ex) {
             Logger.getLogger(ServeurControle.class.getName()).log(Level.SEVERE, null, ex);
         }

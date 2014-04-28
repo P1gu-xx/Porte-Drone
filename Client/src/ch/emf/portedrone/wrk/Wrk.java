@@ -6,9 +6,11 @@ package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.Login;
+import ch.emf.portedrone.beans.drone.DeplacementDrone;
 import ch.emf.portedrone.ctrl.ICtrlWrk;
 import ch.emf.portedrone.exception.ConnexionException;
 import ch.emf.portedrone.wrk.input.IInput;
+import ch.emf.portedrone.wrk.input.manette.ManetteDualshock3;
 import ch.emf.portedrone.wrk.reseau.Client;
 import ch.emf.portedrone.wrk.reseau.IEcouteurReseau;
 
@@ -20,7 +22,39 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
 
     public Wrk() {
         client = new Client();
+        exit = false;
+        manette = new ManetteDualshock3();
+        droneSelectionner = true;
+    }
 
+    @Override
+    public void update() {
+        while (!exit) {
+
+            if (manette.isReady()) {
+
+                manette.poll();
+
+                if (manette.getValue(ManetteDualshock3.CROIX) == 1.0f) {
+                    client.ecrireInt(0);
+                }
+                client.ecrireInt(1);
+                client.ecrireObjet(new DeplacementDrone(
+                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100),
+                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_X) * 100),
+                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_X) * 100),
+                        (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100)));
+
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException ex) {
+                    System.out.println("Interruption");
+                }
+
+            } else {
+                System.out.println("La manette n'est pas connectée");
+            }
+        }
     }
 
     @Override
@@ -63,5 +97,9 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
     private Client client;
     private IInput input;
     private Login login;
+    private ManetteDualshock3 manette;
+    private boolean droneSelectionner;
+
+    private boolean exit;
 
 }

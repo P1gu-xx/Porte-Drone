@@ -115,6 +115,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
+        System.out.println("ordre de deplacement recu");
     }
 
     @Override
@@ -129,14 +130,17 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void changerLaCamera() {
+        System.out.println("ordre de changement de camera recu");
     }
 
     @Override
     public void faireBougerMindstorms(DeplacementMindstorms drl) {
+        System.out.println("ordre de deplacement de drone recu");
     }
 
     @Override
     public void faireUnAtterisageAutomatique() {
+        System.out.println("ordre d'atterisagte auto recu");
     }
 
     @Override

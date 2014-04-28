@@ -25,13 +25,14 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         try {
             wrk.connexion("127.0.0.1");
             ihmConnexion.setVisible(true);
+            wrk.update();
         } catch (ConnexionException ce) {
             System.out.println("Erreur : " + ce.titre + " : " + ce.message);
             ihmConnexion.exit();
             ihm.exit();
         }
     }
-    
+        
     @Override
     public void connexion(String login, String motDePasse) {
         try {
