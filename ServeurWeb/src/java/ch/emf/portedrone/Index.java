@@ -5,9 +5,12 @@
  */
 package ch.emf.portedrone;
 
+import ch.emf.portedrone.beans.Logins;
+import ch.emf.portedrone.beans.Vols;
 import ch.emf.portedrone.wrk.Wrk;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,27 +50,41 @@ public class Index extends HttpServlet {
 
             switch (action) {
                 case "connexion":
-                    if (request.getSession().getAttribute("connecter") != "true") {
-                        if (wrk.controllerLogin(request.getParameter("email"), request.getParameter("mdp"))) {
-                            request.getSession().setAttribute("connecter", "true");
-                            out.print("{connexion:true}");
-                        } else {
-                            out.print("{connexion:false}");
-                        }
-                    } else {
+                    Logins controllerLogin = wrk.controllerLogin(request.getParameter("login"), request.getParameter("mdp"));
+                    if (controllerLogin != null) {
+                        request.getSession().setAttribute("connecter", controllerLogin.getPkLogin());
                         out.print("{connexion:true}");
+                    } else {
+                        out.print("{connexion:false}");
                     }
-
                     break;
                 case "deconnexion":
 
-                    request.getSession().setAttribute("connecter", "false");
+                    request.getSession().setAttribute("connecter", null);
 
                     break;
                 case "lesVols":
-                    String msg=wrk.donnerListDesVols();
+                    String msg = wrk.donnerListDesVols();
                     System.out.println(msg);
                     out.print(msg);
+                    break;
+                case "enregistrerVols":
+                    System.out.println("SESSSION : " + request.getSession().getAttribute("connecter"));
+                    if (request.getSession().getAttribute("connecter") != null) {
+                        String reponse = wrk.enregistreVols(
+                                new Vols(0,
+                                        new Date(
+                                                new Long(request.getParameter("dateDecollage"))),
+                                        new Date(
+                                                new Long(request.getParameter("dateAtterisage"))),
+                                        0,
+                                        new Logins(
+                                                (int) request.getSession().getAttribute("connecter"))));
+                        System.out.println(reponse);
+                        out.print(reponse);
+                    } else {
+                        out.print("erreur");
+                    }
                     break;
                 default:
                     out.print("erreur");

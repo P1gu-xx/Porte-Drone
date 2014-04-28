@@ -37,6 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Logins.findByLogin", query = "SELECT l FROM Logins l WHERE l.login = :login"),
     @NamedQuery(name = "Logins.findByPassword", query = "SELECT l FROM Logins l WHERE l.password = :password")})
 public class Logins implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkLogin")
+    private List<Vols> volsList;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,8 +55,6 @@ public class Logins implements Serializable {
     @Size(min = 1, max = 32)
     @Column(name = "password")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkLogin")
-    private List<Vols> volsList;
 
     public Logins() {
     }
@@ -93,15 +93,6 @@ public class Logins implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Vols> getVolsList() {
-        return volsList;
-    }
-
-    public void setVolsList(List<Vols> volsList) {
-        this.volsList = volsList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -125,6 +116,15 @@ public class Logins implements Serializable {
     @Override
     public String toString() {
         return "ch.emf.portedrone.beans.Logins[ pkLogin=" + pkLogin + " ]";
+    }
+
+    @XmlTransient
+    public List<Vols> getVolsList() {
+        return volsList;
+    }
+
+    public void setVolsList(List<Vols> volsList) {
+        this.volsList = volsList;
     }
     
 }

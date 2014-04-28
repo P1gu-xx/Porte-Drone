@@ -7,6 +7,7 @@ package ch.emf.portedrone.wrk;
 
 import ch.emf.dao.JpaDao;
 import ch.emf.dao.filtering.Search;
+import ch.emf.dao.filtering.Search2;
 import ch.emf.portedrone.beans.Logins;
 import ch.emf.portedrone.beans.Vols;
 import com.google.gson.Gson;
@@ -45,26 +46,29 @@ public class WrkDB {
         return bd;
     }
 
-    public Logins trouverLogin(String email, String mdp) {
-        Search s = new Search(Logins.class);
-        s.addFilterEqual("login", email);
-        s.addFilterEqual("password", mdp);
-        Logins login = null;
+    public Logins trouverLogin(String login, String mdp) {
+        Search2 s = new Search2("select p from Logins p");
+        s.addFilterEqual("p.login", "" + login);
+        s.addFilterEqual("p.password", "" + mdp);
+        Logins l = null;
         try {
-            login = (Logins) jpaDao.getSingleResult(s);
+            l = (Logins) jpaDao.getSingleResult(s.getJpql(), s.getParams());
+            System.out.println(l);
         } catch (NoResultException e) {
-
         } catch (Exception e) {
-
         }
-        return login;
+        return l;
     }
 
     public List<Vols> donnerLesVols() {
         List<Vols> lesVols = null;
+        Search s = new Search(Vols.class);
+        jpaDao.clear();
 
+        s.setMaxResults(20);
+        s.addSortDesc("tempsDepart");
         try {
-            lesVols = jpaDao.getList(Vols.class);
+            lesVols = jpaDao.getList(s);
             System.out.println(lesVols);
         } catch (NoResultException e) {
             System.out.println(e);
@@ -73,6 +77,12 @@ public class WrkDB {
         }
 
         return lesVols;
+    }
+
+    public Vols enregistrerVol(Vols vol) {
+        Vols create = jpaDao.create(vol);
+        jpaDao.flush();
+        return create;
     }
 
 }

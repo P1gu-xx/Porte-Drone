@@ -23,6 +23,7 @@ import ch.emf.portedrone.wrk.serveur.ServeurControle;
 import ch.emf.portedrone.wrk.serveur.ServeurVideo;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,6 +41,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     private WrkHttp wrkHttp;
     private boolean running;
     private Info info;
+    private Date dateDecollage;
 
     public Wrk(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
@@ -117,6 +119,12 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireDecollerDrone() {
+        if (dateDecollage == null) {
+            dateDecollage = new Date();
+        } else {
+            wrkHttp.enregistrerVol(dateDecollage, new Date());
+            dateDecollage = null;
+        }
     }
 
     @Override

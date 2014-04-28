@@ -5,6 +5,7 @@
  */
 package ch.emf.portedrone.wrk;
 
+import ch.emf.portedrone.beans.Logins;
 import ch.emf.portedrone.beans.Vols;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,11 +27,9 @@ public class Wrk {
 
     }
 
-    public boolean controllerLogin(String email, String mdp) {
-        if (db.trouverLogin(email, mdp) != null) {
-            return true;
-        }
-        return false;
+    public Logins controllerLogin(String login, String mdp) {
+        System.out.println("controlle de login");
+        return db.trouverLogin(login, mdp);
     }
 
     public String donnerListDesVols() {
@@ -53,9 +52,17 @@ public class Wrk {
     public static String convertDate(Date d) {
         return shortDateFormat.format(d);
     }
-    
+
     private static DateFormat shortDateFormat = DateFormat.getDateTimeInstance(
-                DateFormat.SHORT,
-                DateFormat.SHORT
-        );;
+            DateFormat.SHORT,
+            DateFormat.SHORT
+    );
+
+    ;
+
+    public String enregistreVols(Vols vols) {
+        db.enregistrerVol(vols);
+        return "";
+    }
+
 }

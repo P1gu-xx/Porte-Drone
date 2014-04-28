@@ -75,6 +75,15 @@ public class Vols implements Serializable {
         this.tempsDepart = tempsDepart;
         this.tempsFin = tempsFin;
         this.status = status;
+
+    }
+
+    public Vols(Integer pkVol, Date tempsDepart, Date tempsFin, int status, Logins fkLogin) {
+        this.pkVol = pkVol;
+        this.tempsDepart = tempsDepart;
+        this.tempsFin = tempsFin;
+        this.status = status;
+        this.fkLogin = fkLogin;
     }
 
     public Integer getPkVol() {
@@ -143,7 +152,6 @@ public class Vols implements Serializable {
     }
 
     public String toJson() {
-        return "{\"id\":" + pkVol + ",\"heureDecolage\":\"" +  Wrk.convertDate(tempsDepart) + "\",\"heureAtterisage\":\"" + Wrk.convertDate(tempsFin) + "\",\"login\":\"" + fkLogin.getLogin() + "\"}";
+        return "{\"id\":" + pkVol + ",\"heureDecolage\":\"" + Wrk.convertDate(tempsDepart) + "\",\"heureAtterisage\":\"" + Wrk.convertDate(tempsFin) + "\",\"login\":\"" + fkLogin.getLogin() + "\"}";
     }
-
 }
