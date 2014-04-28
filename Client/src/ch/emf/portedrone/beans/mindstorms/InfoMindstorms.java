@@ -18,8 +18,11 @@ public class InfoMindstorms implements Serializable {
     public ArrayList<Echo> echo;
     public float angle,batterie;
 
-    public InfoMindstorms() {
-        echo = new ArrayList<>();
+    public InfoMindstorms(DeplacementMindstorms deplacementMindstorms, ArrayList<Echo> echo, float angle, float batterie) {
+        this.deplacementMindstorms = deplacementMindstorms;
+        this.echo = echo;
+        this.angle = angle;
+        this.batterie = batterie;
     }
     
     public InfoMindstorms(InfoMindstorms infoMindstorms) {

@@ -71,15 +71,15 @@ public class Wrk implements IEcouteurServeur, KeyListener {
             Delay.msDelay(10);
             compteur++;
         }
-
-        exit();
     }
 
     public void exit() {
         exit = true;
+        System.out.println("On quitte");
         try {
             serveur.exit();
             serveur.join();
+            System.out.println("Le thread serveur est ferme");
         } catch (InterruptedException ex) {
             System.out.println("Impossible de joindre le thread");
         }

@@ -28,7 +28,6 @@ public class Client implements IClient {
         communicationVideo = new CommunicationVideo();
 
         communicationControle.setClient(this);
-
         communicationVideo.setClient(this);
 
         threadTCP = new Thread(communicationControle);
@@ -36,7 +35,6 @@ public class Client implements IClient {
 
         threadTCP.start();
         threadUDP.start();
-
     }
 
     public void connexion(String adresse) throws ConnexionException {
