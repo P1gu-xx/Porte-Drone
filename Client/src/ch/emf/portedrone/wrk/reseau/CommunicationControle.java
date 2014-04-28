@@ -26,11 +26,14 @@ public class CommunicationControle implements Runnable{
         while(!exit) {
             if(client.isConnexion()) {
                 try {
+                    System.out.println("Attend des messages");
                     ecouteur.setInfo((Info)in.readObject());
+                    System.out.println("Message recu");
                 } catch (ClassNotFoundException ex) {
                     System.out.println("Le message n'est pas un objet Info.");
                 } catch (IOException ex) {
                     System.out.println("La lecture du flux TCP a été interrompue.");
+                    System.out.println(ex);
                     ecouteur.reconnexion(client.getAdresse());
                 } 
             }

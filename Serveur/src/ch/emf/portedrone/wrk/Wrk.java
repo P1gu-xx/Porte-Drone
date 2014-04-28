@@ -142,5 +142,6 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     @Override
     public void setInfoMindstorms(InfoMindstorms infoMindstorms) {
         info.infoMindstorms = new InfoMindstorms(infoMindstorms);
+        System.out.println("" + infoMindstorms.angle);
     }
 }

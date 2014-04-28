@@ -33,10 +33,13 @@ public class Mindstorms extends Thread {
                 out = new ObjectOutputStream(socket.getOutputStream());
                 connexion = true;
                 while (connexion) {
-                    switch (in.readInt()) {
+                    int choix = in.readInt();
+                    System.out.println(choix);
+                    switch (choix) {
                         case 0:
                             try {
                                 ecouteur.setInfoMindstorms((InfoMindstorms) in.readObject());
+                                System.out.println("Message reçu");
                             } catch (ClassNotFoundException ex) {
                                 System.out.println(ex.getMessage());
                                 System.out.println("Le message n'est pas coherant.");
@@ -50,6 +53,7 @@ public class Mindstorms extends Thread {
                 System.out.println("Adresse du Mindsotrms inconnue.");
             } catch (IOException ex) {
                 System.out.println("Impossible de se connecter au Mindstorms.");
+                System.out.println(ex);
             }
             connexion = false;
         }

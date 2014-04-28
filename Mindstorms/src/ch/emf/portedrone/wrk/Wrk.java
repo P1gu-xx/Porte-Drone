@@ -34,8 +34,7 @@ public class Wrk implements IEcouteurServeur, KeyListener {
 
     public void start() {
         serveur.start();
-        InfoMindstorms infoMindstorms = new InfoMindstorms();
-        infoMindstorms.deplacementMindstorms = new DeplacementMindstorms(0, 0);
+        InfoMindstorms infoMindstorms = new InfoMindstorms(new DeplacementMindstorms(0, 0), new ArrayList<ch.emf.portedrone.beans.mindstorms.Echo>(), 0f, 0f);
         
         compteur = 0;
         while (!exit) {
@@ -65,21 +64,22 @@ public class Wrk implements IEcouteurServeur, KeyListener {
                 infoMindstorms.deplacementMindstorms.vitesseRoueGauche = moteurs.getSpeedWheelLeft();
                 
                 InfoMindstorms copy = new InfoMindstorms(infoMindstorms);
+                System.out.println("Ecrit: " + copy.angle);
                 serveur.ecrireObjet(0, copy);
             }
 
             Delay.msDelay(10);
             compteur++;
         }
-
-        exit();
     }
 
     public void exit() {
         exit = true;
+        System.out.println("On quitte");
         try {
             serveur.exit();
             serveur.join();
+            System.out.println("Le thread serveur est ferme");
         } catch (InterruptedException ex) {
             System.out.println("Impossible de joindre le thread");
         }
@@ -98,6 +98,7 @@ public class Wrk implements IEcouteurServeur, KeyListener {
     public void keyReleased(Key key) {
         exit();
     }
+    
     private Serveur serveur;
     private Moteurs moteurs;
     private Radar radar;

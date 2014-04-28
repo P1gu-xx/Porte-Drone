@@ -34,7 +34,7 @@ public class Radar {
     }
     
     public void update() {
-        // On met à jour les données
+        // On met a jour les donnees
         fetch();
         
         // Bouge le moteur.

@@ -2,7 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
         <group name="Projet"/>
+        <group>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/Wrk.java</file>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/Radar.java</file>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/reseau/Serveur.java</file>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/beans/mindstorms/InfoMindstorms.java</file>
+        </group>
     </open-files>
 </project-private>

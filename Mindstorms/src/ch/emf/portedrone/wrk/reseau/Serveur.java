@@ -46,7 +46,7 @@ public class Serveur extends Thread {
                                     ecouteur.reseauDeplacementMindstorms((DeplacementMindstorms) in.readObject());
                                     break;
                                 default:
-                                    System.out.println("Le message à été mal envoyé.");
+                                    System.out.println("Le message a ete mal envoye.");
                             }
                         } catch (IOException ex) {
                             System.out.println("Le flux entrant TCP a été interrompu.");
@@ -79,12 +79,12 @@ public class Serveur extends Thread {
     }
 
     public void ecrireObjet(int type, Object objet) {
-        System.out.println("Ecrire");
         if (!exit && connexion) {
             try {
                 out.writeInt(type);
                 out.writeObject(objet);
                 out.flush();
+                System.out.println("Est écrit");
             } catch (IOException ex) {
                 connexion = false;
             }
