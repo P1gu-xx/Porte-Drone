@@ -9,6 +9,7 @@ import ch.emf.portedrone.exception.ConnexionException;
 import ch.emf.portedrone.ihm.IIhmConnexionCtrl;
 import ch.emf.portedrone.ihm.IIhmCtrl;
 import ch.emf.portedrone.wrk.IWrkCtrl;
+import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,7 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         
     }
     
+    
     public void start() {
         try {
             wrk.connexion("172.23.86.237");
@@ -32,7 +34,12 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
             ihm.exit();
         }
     }
-        
+   
+        @Override
+    public void imageRecu(BufferedImage img) {
+        ihm.afficherImageDrone(img);
+    }
+    
     @Override
     public void connexion(String login, String motDePasse) {
         try {

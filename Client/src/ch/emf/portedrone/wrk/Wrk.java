@@ -14,6 +14,7 @@ import ch.emf.portedrone.wrk.input.IInput;
 import ch.emf.portedrone.wrk.input.manette.ManetteDualshock3;
 import ch.emf.portedrone.wrk.reseau.Client;
 import ch.emf.portedrone.wrk.reseau.IEcouteurReseau;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -71,6 +72,11 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                 }
             }
         }
+    }
+    
+        @Override
+    public void imageRecu(BufferedImage img) {
+        ctrl.imageRecu(img);
     }
 
     @Override

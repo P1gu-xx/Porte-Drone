@@ -4,6 +4,8 @@
  */
 package ch.emf.portedrone.wrk.reseau;
 
+import java.awt.image.BufferedImage;
+
 /**
  *
  * @author PeclatJ
@@ -15,4 +17,5 @@ public interface IClient {
     public boolean isConnexion();
 
     public String getAdresse();
+
 }

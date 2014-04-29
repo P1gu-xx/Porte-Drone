@@ -5,6 +5,7 @@
 package ch.emf.portedrone.ihm;
 
 import ch.emf.portedrone.beans.Info;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -17,4 +18,5 @@ public interface IIhmCtrl {
     public void afficherMessage(String titre, String message, int type);
     public void setInfo(Info info);
     public void exit();
+    public void afficherImageDrone(BufferedImage img);
 }

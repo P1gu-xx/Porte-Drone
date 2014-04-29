@@ -7,6 +7,7 @@ package ch.emf.portedrone.ihm.pc;
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.ctrl.ICtrlIhm;
 import ch.emf.portedrone.ihm.IIhmCtrl;
+import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
 
@@ -271,6 +272,13 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
         
         repaint();
     }
+
+    @Override
+    public void afficherImageDrone(BufferedImage img) {
+  cameraDronePanel1.setImg(img);
+    }
+    
+    
     
     @Override
     public void exit() {
@@ -304,6 +312,7 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
 
     private ICtrlIhm ctrl;
 
+    
 }
 
 

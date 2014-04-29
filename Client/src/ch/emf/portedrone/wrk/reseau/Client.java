@@ -6,6 +6,7 @@ package ch.emf.portedrone.wrk.reseau;
 
 import ch.emf.portedrone.beans.Login;
 import ch.emf.portedrone.exception.ConnexionException;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -133,6 +134,10 @@ public class Client implements IClient {
         communicationControle.setEcouteurReseau(ecouteur);
         communicationVideo.setEcouteurReseau(ecouteur);
     }
+
+
+    
+    
     public static final int PORT_TCP = 55584;
     public static final int PORT_UDP = 55584;
     private Thread threadTCP, threadUDP;

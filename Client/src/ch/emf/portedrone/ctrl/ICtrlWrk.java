@@ -5,6 +5,7 @@
 package ch.emf.portedrone.ctrl;
 
 import ch.emf.portedrone.beans.Info;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -14,4 +15,6 @@ import ch.emf.portedrone.beans.Info;
 public interface ICtrlWrk {
     
     public void setInfo(Info info);
+        
+    public void imageRecu(BufferedImage img) ;
 }

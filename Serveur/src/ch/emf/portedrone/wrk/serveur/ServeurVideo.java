@@ -31,7 +31,7 @@ public class ServeurVideo extends Serveur {
 
     public ServeurVideo(String ipDestination, int port) throws UnknownHostException {
         super();
-        this.portEcoute = port;
+        this.port = port;
         address = InetAddress.getByName(ipDestination);
         creerDatagramSocket();
         baStream = new ByteArrayOutputStream();
@@ -42,7 +42,7 @@ public class ServeurVideo extends Serveur {
         try {
             socket = new DatagramSocket();
             socket.setSoTimeout(0);
-            this.port = port;
+            
         } catch (SocketException e) {
             e.printStackTrace();
         }
@@ -60,9 +60,12 @@ public class ServeurVideo extends Serveur {
         System.out.println(packet.length);
         try {
             socket.send(new DatagramPacket(packet, packet.length, address, port));
-            
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+   
+    
 }
