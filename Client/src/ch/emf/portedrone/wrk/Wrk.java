@@ -45,7 +45,7 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                         (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100)));
 
                 try {
-                    Thread.sleep(25);
+                    Thread.sleep(100);
                 } catch (InterruptedException ex) {
                     System.out.println("Interruption");
                 }
