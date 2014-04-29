@@ -7,6 +7,7 @@ package ch.emf.portedrone.wrk;
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.Login;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import ch.emf.portedrone.ctrl.ICtrlWrk;
 import ch.emf.portedrone.exception.ConnexionException;
 import ch.emf.portedrone.wrk.input.IInput;
@@ -24,25 +25,44 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
         client = new Client();
         exit = false;
         manette = new ManetteDualshock3();
-        droneSelectionner = true;
+        droneSelectionne = true;
     }
 
     @Override
     public void update() {
         while (!exit) {
-            if (manette.isReady()&&client.isConnexion()) {
-                System.out.println("Manette");
+            if (manette.isReady() && client.isConnexion()) {
                 manette.poll();
-
-                if (manette.getValue(ManetteDualshock3.CROIX) == 1.0f) {
-                    client.ecrireInt(0);
+                
+                if(manette.isPressed(ManetteDualshock3.R1) && !manette.isPressed(ManetteDualshock3.L1)) {
+                    droneSelectionne = true;
+                    System.out.println("Drone");
                 }
-                client.ecrireInt(1);
-                client.ecrireObjet(new DeplacementDrone(
-                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100),
-                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_X) * 100),
-                        (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_X) * 100),
-                        (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100)));
+                
+                if(manette.isPressed(ManetteDualshock3.L1) && !manette.isPressed(ManetteDualshock3.R1)) {
+                    droneSelectionne = false;
+                    System.out.println("Mindstorms");
+                }
+
+                if (droneSelectionne) { // Commande pour le drone
+                    if (manette.isPressed(ManetteDualshock3.CROIX)) {
+                        client.ecrireInt(0);
+                    }
+                    client.ecrireInt(1);
+                    client.ecrireObjet(new DeplacementDrone(
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100),
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_X) * 100),
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_X) * 100),
+                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100)));
+                    if (manette.isPressed(ManetteDualshock3.CARRE)) {
+                        client.ecrireInt(2);
+                    }
+                } else { // Commande pour le Mindstorms
+                    client.ecrireInt(4);
+                    client.ecrireObjet(new DeplacementMindstorms(
+                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
+                            (int) (manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100)));
+                }
 
                 try {
                     Thread.sleep(100);
@@ -87,14 +107,11 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
     public void setCtrl(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
     }
-
     private ICtrlWrk ctrl;
-
     private Client client;
     private IInput input;
     private Login login;
     private ManetteDualshock3 manette;
-    private boolean droneSelectionner;
-
+    private boolean droneSelectionne;
     private boolean exit;
 }

@@ -41,8 +41,9 @@ public class Radar {
         if(echoFound) {
             //radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
             radarMotor.rotate((int)echoAngle, true);
+        } else {
+            radarMotor.stop(true);
         }
-        
     }
     
     private void fetch() {
