@@ -9,6 +9,7 @@ import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.ihm.IIhm;
 import ch.emf.portedrone.wrk.IWrk;
 import ch.emf.portedrone.wrk.Wrk;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -38,5 +39,12 @@ public class Ctrl implements ICtrlWrk, ICtrlIhm {
     public void nouvelleInfo(Info info) {
         ihm.afficherInfoDrone(info);
     }
+
+    @Override
+    public void afficherCameraDrone(BufferedImage img) {
+        ihm.afficherCameraDrone(img);
+    }
+    
+    
     
 }

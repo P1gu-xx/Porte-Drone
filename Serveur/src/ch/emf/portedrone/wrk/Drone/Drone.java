@@ -55,7 +55,13 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      */
     public boolean start() {
         try {
+
             drone = new ARDrone();
+            drone.addExceptionListener(new IExceptionListener() {
+                public void exeptionOccurred(ARDroneException exc) {
+                    System.out.println("ERREUR du drone : " + exc.getMessage());
+                }
+            });
             drone.start();
             drone.getCommandManager().setLedsAnimation(LEDAnimation.BLINK_ORANGE, 3, 10);
             drone.addExceptionListener(this);
@@ -97,7 +103,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         boolean ok = false;
         if (info.enVol && drone != null) {
             info.deplacementDrone = dd;
-            if (dd.vitesseX == 0&&dd.vitesseY == 0&&dd.vitesseZ == 0&&dd.spin==0) {
+            if (dd.vitesseX == 0 && dd.vitesseY == 0 && dd.vitesseZ == 0 && dd.spin == 0) {
                 drone.getCommandManager().hover();
             } else {
                 drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
@@ -152,6 +158,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void receivedAltitude(int i) {
+        info.hauteur = i;
         ecouteurDrone.droneAltitudeRecu(i);
     }
 
@@ -161,6 +168,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void batteryLevelChanged(int i) {
+        info.niveauDeBattrie = i;
         ecouteurDrone.droneNiveauDeBattrieRecu(i);
     }
 
@@ -170,6 +178,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
 
     @Override
     public void received(long l) {
+        info.reseauWifi = l;
         ecouteurDrone.droneNiveauDeReseauWifiRecu(l);
     }
 

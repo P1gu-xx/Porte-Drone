@@ -6,6 +6,7 @@
 package ch.emf.portedrone.ihm;
 
 import ch.emf.portedrone.beans.Info;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -21,4 +22,6 @@ public interface IIhm {
     void afficher(boolean visible);
 
     void afficherInfoDrone(Info info);
+    
+    void afficherCameraDrone(BufferedImage img);
 }

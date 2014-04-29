@@ -8,6 +8,7 @@ package ch.emf.portedrone.ihm;
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.ctrl.ICtrlIhm;
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -49,6 +50,7 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
         lbl_enVol = new javax.swing.JLabel();
         lbl_decollage = new javax.swing.JLabel();
         lbl_connecter = new javax.swing.JLabel();
+        panelCamera1 = new ch.emf.portedrone.ihm.PanelCamera();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -197,6 +199,17 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        javax.swing.GroupLayout panelCamera1Layout = new javax.swing.GroupLayout(panelCamera1);
+        panelCamera1.setLayout(panelCamera1Layout);
+        panelCamera1Layout.setHorizontalGroup(
+            panelCamera1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 259, Short.MAX_VALUE)
+        );
+        panelCamera1Layout.setVerticalGroup(
+            panelCamera1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -204,7 +217,9 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(397, Short.MAX_VALUE))
+                .addGap(45, 45, 45)
+                .addComponent(panelCamera1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(93, 93, 93))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +227,9 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panelCamera1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(311, 311, 311))
         );
 
         pack();
@@ -238,6 +256,7 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
     private javax.swing.JLabel lbl_vitesseX;
     private javax.swing.JLabel lbl_vitesseY;
     private javax.swing.JLabel lbl_vitesseZ;
+    private ch.emf.portedrone.ihm.PanelCamera panelCamera1;
     // End of variables declaration//GEN-END:variables
     public void setCtrl(ICtrlIhm ctrl) {
         this.ctrl = ctrl;
@@ -246,6 +265,12 @@ public class Ihm extends javax.swing.JFrame implements IIhm {
     @Override
     public void afficher(boolean visible) {
         setVisible(visible);
+    }
+    
+        @Override
+    public void afficherCameraDrone(BufferedImage img) {
+        panelCamera1.setImg(img);
+        panelCamera1.repaint();
     }
 
     @Override

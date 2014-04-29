@@ -8,6 +8,7 @@ package ch.emf.portedrone.wrk.serveur;
 import ch.emf.portedrone.beans.Info;
 import ch.emf.portedrone.beans.Login;
 import ch.emf.portedrone.beans.drone.DeplacementDrone;
+import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -77,7 +78,8 @@ public class ServeurControle extends Serveur {
                         ecouteur.faireUnAtterisageAutomatique();
                         break;
                     case 4:
-
+                        System.out.println("message de demande de deplacement recu");
+                        ecouteur.faireBougerMindstorms((DeplacementMindstorms) ois.readObject());
                         break;
                     case 5:
 

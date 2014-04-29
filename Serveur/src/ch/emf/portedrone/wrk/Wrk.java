@@ -23,6 +23,7 @@ import ch.emf.portedrone.wrk.serveur.IEcouteurServeurVideo;
 import ch.emf.portedrone.wrk.serveur.ServeurControle;
 import ch.emf.portedrone.wrk.serveur.ServeurVideo;
 import java.awt.image.BufferedImage;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -54,7 +55,11 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
         drone = new Drone(this);
         mindstorms = new Mindstorms(this);
         serveurControle = new ServeurControle(this);
-
+        try {
+            serveurVideo=new ServeurVideo("172.23.87.255",8888);
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Wrk.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
@@ -74,19 +79,13 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     }
 
     public void traiterLesDonnees() {
-        int vitD=0;
-        int vitG=0;
         while (running) {
             this.info.infoDrone = drone.getInfo();
 
             ctrl.nouvelleInfo(info);
             serveurControle.envoyerInfo(info);
             
-            //ligne pour tester le controller du ev3
-            DeplacementMindstorms dm=new DeplacementMindstorms(vitD, vitG);
-            mindstorms.ecrireObjet(0, dm);
-            
-            
+ 
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -97,27 +96,23 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void droneImageRecu(BufferedImage img) {
+        serveurVideo.envoyerDonnee(img);
+        ctrl.afficherCameraDrone(img);
     }
 
     @Override
     public void droneAltitudeRecu(int altitude) {
-        if (info.infoDrone != null) {
-            info.infoDrone.hauteur = altitude;
-        }
+        
     }
 
     @Override
     public void droneNiveauDeBattrieRecu(int i) {
-        if (info.infoDrone != null) {
-            info.infoDrone.niveauDeBattrie = i;
-        }
+
     }
 
     @Override
     public void droneNiveauDeReseauWifiRecu(long l) {
-        if (info.infoDrone != null) {
-            info.infoDrone.reseauWifi = l;
-        }
+        
     }
 
     @Override
@@ -126,9 +121,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
-//        System.out.println("ordre de deplacement recu");
         drone.bouger(dd);
-
     }
 
     @Override
@@ -148,11 +141,13 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     @Override
     public void changerLaCamera() {
         System.out.println("ordre de changement de camera recu");
+        drone.changerCamera();
     }
 
     @Override
     public void faireBougerMindstorms(DeplacementMindstorms drl) {
-        System.out.println("ordre de deplacement de drone recu");
+        System.out.println("demande au mindstorm");
+        mindstorms.ecrireObjet(0, drl);
     }
 
     @Override
