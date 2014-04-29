@@ -74,11 +74,21 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
     }
 
     public void traiterLesDonnees() {
+        int vitD=0;
+        int vitG=0;
         while (running) {
+            this.info.infoDrone = drone.getInfo();
+
             ctrl.nouvelleInfo(info);
             serveurControle.envoyerInfo(info);
+            
+            //ligne pour tester le controller du ev3
+            DeplacementMindstorms dm=new DeplacementMindstorms(vitD, vitG);
+            mindstorms.ecrireObjet(0, dm);
+            
+            
             try {
-                Thread.sleep(20);
+                Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Wrk.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -116,8 +126,9 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
-        System.out.println("ordre de deplacement recu");
+//        System.out.println("ordre de deplacement recu");
         drone.bouger(dd);
+
     }
 
     @Override

@@ -46,17 +46,6 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         this.ecouteurDrone = ecouteurDrone;
         info = new InfoDrone(new DeplacementDrone(0, 0, 0, 0), 0, 0, 0, false, false, false, false);
 
-        task = new TimerTask() {
-            @Override
-            public void run() {
-                if (info.decoller) {
-                    info.enVol = true;
-                }
-                info.enDecollage = false;
-            }
-        };
-
-        timer = new Timer();
     }
 
     /**
@@ -106,9 +95,13 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      */
     public boolean bouger(DeplacementDrone dd) {
         boolean ok = false;
-        if (info.enVol && drone!=null) {
+        if (info.enVol && drone != null) {
             info.deplacementDrone = dd;
-            drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
+            if (dd.vitesseX == 0&&dd.vitesseY == 0&&dd.vitesseZ == 0&&dd.spin==0) {
+                drone.getCommandManager().hover();
+            } else {
+                drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
+            }
             ok = true;
         }
         return ok;
@@ -123,8 +116,10 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      * sinon si l'ordre a ete envoye retourne true.
      */
     public boolean decoller() {
+
         boolean ok = false;
         if (drone != null && !info.enDecollage) {
+            info.enDecollage = true;
             if (info.decoller) {
                 info.enVol = false;
                 drone.getCommandManager().landing();
@@ -133,6 +128,16 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
                 drone.getCommandManager().takeOff();
             }
             info.decoller = !info.decoller;
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    if (info.decoller) {
+                        info.enVol = true;
+                    }
+                    info.enDecollage = false;
+                }
+            };
+            timer = new Timer();
             timer.schedule(task, new Date(System.currentTimeMillis() + 4000));
             ok = true;
         }
