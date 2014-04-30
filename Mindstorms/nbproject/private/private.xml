@@ -5,9 +5,8 @@
         <group name="Projet"/>
         <group>
             <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/Wrk.java</file>
-            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/Radar.java</file>
             <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/reseau/Serveur.java</file>
-            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/beans/mindstorms/InfoMindstorms.java</file>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/application/Application.java</file>
         </group>
         <group name="drone"/>
     </open-files>
