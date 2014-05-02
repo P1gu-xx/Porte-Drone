@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.ihm.pc;
 
 import ch.emf.portedrone.beans.mindstorms.Echo;
@@ -12,11 +8,14 @@ import javax.swing.JPanel;
 
 
 /**
- *
+ * JPanel pour afficher dans l'IHM le radar du Mindstorms.
  * @author PeclatJ
  */
 public class RadarMindstormsPanel extends JPanel{
     
+    /**
+     * Constructeur du panel.
+     */
     public RadarMindstormsPanel() {
         listeEcho = new ArrayList<>();
         angleRadar = (int) (Math.PI/7);
@@ -71,6 +70,10 @@ public class RadarMindstormsPanel extends JPanel{
         }
     }
     
+    /**
+     * Défini la liste des échos à afficher sur l'écran.
+     * @param listeEcho La liste des échos.
+     */
     public void setEchos(ArrayList<Echo> listeEcho) {
         this.listeEcho = new ArrayList<>();
         for (Echo echo : listeEcho) {
@@ -78,11 +81,26 @@ public class RadarMindstormsPanel extends JPanel{
         }
     }
     
+    /**
+     * Défini l'angle du radar actuel et modifie sa position sur l'écran.
+     * @param angleRadar L'angle du radar en radian.
+     */
     public void setAngle(double angleRadar) {
         this.angleRadar = angleRadar;
     }
     
+    /**
+     * La liste des échos.
+     */
     private ArrayList<IhmEcho> listeEcho;
+    
+    /**
+     * L'angle du radar en radian.
+     */
     private double angleRadar;
+    
+    /**
+     * Constante utile à l'affichage, elle définie le nombre de petit cercle sur le radar.
+     */
     private static final int nombreDeSubdivision = 4;
 }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.Info;
@@ -17,11 +13,15 @@ import ch.emf.portedrone.wrk.reseau.IEcouteurReseau;
 import java.awt.image.BufferedImage;
 
 /**
+ * Classe Worker de l'application.
  *
  * @author PeclatJ
  */
 public class Wrk implements IWrkCtrl, IEcouteurReseau {
 
+    /**
+     * Constructeur de la classe.
+     */
     public Wrk() {
         client = new Client();
         exit = false;
@@ -34,13 +34,13 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
         while (!exit) {
             if (manette.isReady() && client.isConnexion()) {
                 manette.poll();
-                
-                if(manette.isPressed(ManetteDualshock3.R1) && !manette.isPressed(ManetteDualshock3.L1)) {
+
+                if (manette.isPressed(ManetteDualshock3.R1) && !manette.isPressed(ManetteDualshock3.L1)) {
                     droneSelectionne = true;
                     System.out.println("Drone");
                 }
-                
-                if(manette.isPressed(ManetteDualshock3.L1) && !manette.isPressed(ManetteDualshock3.R1)) {
+
+                if (manette.isPressed(ManetteDualshock3.L1) && !manette.isPressed(ManetteDualshock3.R1)) {
                     droneSelectionne = false;
                     System.out.println("Mindstorms");
                 }
@@ -73,8 +73,8 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
             }
         }
     }
-    
-        @Override
+
+    @Override
     public void imageRecu(BufferedImage img) {
         ctrl.imageRecu(img);
     }
@@ -110,14 +110,43 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
         ctrl.setInfo(info);
     }
 
+    /**
+     * Permet de définir la référence vers le contrôleur de l'application.
+     * @param ctrl La référencce du contrôleur,
+     */
     public void setCtrl(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
     }
+    
+    /**
+     * La référence vers le contrôleur de l'application.
+     */
     private ICtrlWrk ctrl;
+    
+    /**
+     * Connexion au serveur.
+     */
     private Client client;
-    private IInput input;
+    
+    /**
+     * Le login de l'utilisateur.
+     */
     private Login login;
+    
+    /**
+     * La manette PS3.
+     */
     private ManetteDualshock3 manette;
+    
+    /**
+     * Défini si l'on commande le drone ou le mindstorms.
+     * true = drone.
+     * false = Mindstorms.
+     */
     private boolean droneSelectionne;
+    
+    /**
+     * Défini si l'application doit se terminer.
+     */
     private boolean exit;
 }

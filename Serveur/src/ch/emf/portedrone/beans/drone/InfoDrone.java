@@ -1,23 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.beans.drone;
 
 import java.io.Serializable;
 
 /**
- *
+ * Bean qui contient des infos sur le drone.
  * @author ramosdasilm
  */
 public class InfoDrone implements Serializable{
 
-    public DeplacementDrone deplacementDrone;
-    public int hauteur, niveauDeBattrie;
-    public long reseauWifi;
-    public boolean enVol, enDecollage, connecter, decoller;
-
+    /**
+     * Constructeur de base
+     * @param deplacementDrone Les infos sur le déplacement du drone.
+     * @param hauteur L'altitude du drone.
+     * @param niveauDeBattrie Le niveau de la batterie du drone.
+     * @param reseauWifi La puissance du signale wifi.
+     * @param enVol Le drone est en vol.
+     * @param enDecollage Le drone est en décollage.
+     * @param connecter Le drone est connecté.
+     */
     public InfoDrone(DeplacementDrone deplacementDrone, int hauteur, int niveauDeBattrie, long reseauWifi, boolean enVol, boolean enDecollage, boolean connecter, boolean decoller) {
         this.deplacementDrone = deplacementDrone;
         this.hauteur = hauteur;
@@ -26,9 +26,12 @@ public class InfoDrone implements Serializable{
         this.enVol = enVol;
         this.enDecollage = enDecollage;
         this.connecter = connecter;
-        this.decoller = decoller;
     }
     
+    /**
+     * Constructeur de copie
+     * @param infoDrone L'objet à copier
+     */
     public InfoDrone(InfoDrone infoDrone) {
         deplacementDrone = new DeplacementDrone(infoDrone.deplacementDrone);
         hauteur = infoDrone.hauteur;
@@ -37,7 +40,41 @@ public class InfoDrone implements Serializable{
         enVol = infoDrone.enVol;
         enDecollage = infoDrone.enDecollage;
         connecter = infoDrone.connecter;
-        decoller = infoDrone.decoller;
     }
+    
+    /**
+     * beans de déplacment du drone.
+     */
+    public DeplacementDrone deplacementDrone;
+    
+    /**
+     * L'altitude du drone.
+     */
+    public int hauteur;
+    
+    /**
+     * Le niveau de batterie du drone.
+     */
+    public int niveauDeBattrie;
+    
+    /**
+     * La puissance du signal wifi du drone.
+     */
+    public long reseauWifi;
+    
+    /**
+     * Indique si le drone est en vol.
+     */
+    public boolean enVol;
+    
+    /**
+     * Indique si le drone est en train de decoller.
+     */
+    public boolean enDecollage;
+    
+    /**
+     * Indique si l'on est connecté au drone.
+     */
+    public boolean connecter;
 
 }

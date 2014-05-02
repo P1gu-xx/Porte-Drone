@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.beans.drone;
 
 import java.io.Serializable;
@@ -47,12 +42,39 @@ public class InfoDrone implements Serializable{
         connecter = infoDrone.connecter;
     }
     
+    /**
+     * beans de déplacment du drone.
+     */
     public DeplacementDrone deplacementDrone;
+    
+    /**
+     * L'altitude du drone.
+     */
     public int hauteur;
+    
+    /**
+     * Le niveau de batterie du drone.
+     */
     public int niveauDeBattrie;
+    
+    /**
+     * La puissance du signal wifi du drone.
+     */
     public long reseauWifi;
+    
+    /**
+     * Indique si le drone est en vol.
+     */
     public boolean enVol;
+    
+    /**
+     * Indique si le drone est en train de decoller.
+     */
     public boolean enDecollage;
+    
+    /**
+     * Indique si l'on est connecté au drone.
+     */
     public boolean connecter;
 
 }
