@@ -40,7 +40,11 @@ public class Radar {
         // Bouge le moteur.
         if(echoFound) {
             //radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
-            radarMotor.rotate((int)echoAngle, true);
+            if(Math.abs((int)echoAngle) < 10) {
+                radarMotor.stop(true);
+            } else {
+                radarMotor.rotate((int)echoAngle, true);
+            }
         } else {
             radarMotor.stop(true);
         }

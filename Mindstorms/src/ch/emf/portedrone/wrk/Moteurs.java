@@ -22,12 +22,14 @@ public class Moteurs {
     }
     
     public void update(DeplacementMindstorms deplacement) {
+        System.out.println("d :"+deplacement.vitesseRoueDroite+" \t g :"+deplacement.vitesseRoueGauche);
         if(deplacement.vitesseRoueGauche > 5) {
             wheelMotorLeft.forward();
-            wheelMotorLeft.setSpeed(deplacement.vitesseRoueGauche / 100 * VITESSE_MAX);
+            wheelMotorLeft.setSpeed((int) ((float)deplacement.vitesseRoueGauche / 100.0f * VITESSE_MAX));
+            System.out.println("vr g : "+deplacement.vitesseRoueGauche / 100.0f * VITESSE_MAX);
         } else if(deplacement.vitesseRoueGauche < -5) {
             wheelMotorLeft.backward();
-            wheelMotorLeft.setSpeed(deplacement.vitesseRoueGauche / 100 * VITESSE_MIN);
+            wheelMotorLeft.setSpeed((int) ((float)deplacement.vitesseRoueGauche / 100.0f * VITESSE_MIN));
         } else {
             wheelMotorLeft.stop(true);
             wheelMotorLeft.setSpeed(0);
@@ -35,10 +37,10 @@ public class Moteurs {
         
         if(deplacement.vitesseRoueDroite > 5) {
             wheelMotorRight.forward();
-            wheelMotorRight.setSpeed(deplacement.vitesseRoueDroite / 100 * VITESSE_MAX);
+            wheelMotorRight.setSpeed((int) ((float)deplacement.vitesseRoueDroite / 100.0f * VITESSE_MAX));
         } else if(deplacement.vitesseRoueDroite < -5) {
             wheelMotorRight.backward();
-            wheelMotorRight.setSpeed(deplacement.vitesseRoueDroite / 100 * VITESSE_MIN);
+            wheelMotorRight.setSpeed((int) ((float)deplacement.vitesseRoueDroite / 100.0f * VITESSE_MIN));
         } else {
             wheelMotorRight.stop(true);
             wheelMotorRight.setSpeed(0);
@@ -55,8 +57,8 @@ public class Moteurs {
     
     private static final Port MOTOR_PORT_LEFT = MotorPort.B;
     private static final Port MOTOR_PORT_RIGHT = MotorPort.C;
-    private static final int VITESSE_MAX = 720;
-    private static final int VITESSE_MIN = -720;
+    private static final float VITESSE_MAX = 720;
+    private static final float VITESSE_MIN = -720;
     
     private RegulatedMotor wheelMotorLeft;
     private RegulatedMotor wheelMotorRight;

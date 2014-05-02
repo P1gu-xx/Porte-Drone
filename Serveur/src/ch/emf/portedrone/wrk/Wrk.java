@@ -56,7 +56,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
         mindstorms = new Mindstorms(this);
         serveurControle = new ServeurControle(this);
         try {
-            serveurVideo=new ServeurVideo("172.23.87.255",8888);
+            serveurVideo = new ServeurVideo("172.23.87.255", 8888);
         } catch (UnknownHostException ex) {
             Logger.getLogger(Wrk.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -84,8 +84,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
             ctrl.nouvelleInfo(info);
             serveurControle.envoyerInfo(info);
-            
- 
+
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
@@ -102,7 +101,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void droneAltitudeRecu(int altitude) {
-        
+
     }
 
     @Override
@@ -112,7 +111,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void droneNiveauDeReseauWifiRecu(long l) {
-        
+
     }
 
     @Override
@@ -121,6 +120,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireBougerDrone(DeplacementDrone dd) {
+
         drone.bouger(dd);
     }
 
@@ -146,7 +146,9 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     @Override
     public void faireBougerMindstorms(DeplacementMindstorms drl) {
-        System.out.println("demande au mindstorm");
+
+        System.out.println("d :" + drl.vitesseRoueDroite + " \t g :" + drl.vitesseRoueGauche);
+
         mindstorms.ecrireObjet(0, drl);
     }
 
