@@ -31,7 +31,7 @@ public class InfoMindstorms implements Serializable {
        deplacementMindstorms = new DeplacementMindstorms(infoMindstorms.deplacementMindstorms);
        echo = new ArrayList<>();
         for (Echo echo : infoMindstorms.echo) {
-            infoMindstorms.echo.add(new Echo(echo));
+            this.echo.add(new Echo(echo));
         }
        angle = infoMindstorms.angle;
        batterie = infoMindstorms.batterie;

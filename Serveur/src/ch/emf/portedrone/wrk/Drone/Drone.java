@@ -126,18 +126,18 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
         boolean ok = false;
         if (drone != null && !info.enDecollage) {
             info.enDecollage = true;
-            if (info.decoller) {
+            if (info.enVol) {
                 info.enVol = false;
                 drone.getCommandManager().landing();
             } else {
                 info.enVol = false;
                 drone.getCommandManager().takeOff();
             }
-            info.decoller = !info.decoller;
+            
             task = new TimerTask() {
                 @Override
                 public void run() {
-                    if (info.decoller) {
+                    if (info.enVol) {
                         info.enVol = true;
                     }
                     info.enDecollage = false;
