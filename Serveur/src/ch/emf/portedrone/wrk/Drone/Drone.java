@@ -101,12 +101,12 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
      */
     public boolean bouger(DeplacementDrone dd) {
         boolean ok = false;
-        if (info.enVol && drone != null) {
+        if (info.enVol && drone != null && !info.enDecollage) {
             info.deplacementDrone = dd;
             if (dd.vitesseX == 0 && dd.vitesseY == 0 && dd.vitesseZ == 0 && dd.spin == 0) {
                 drone.getCommandManager().hover();
             } else {
-                drone.getCommandManager().move(dd.vitesseX, dd.vitesseY, dd.vitesseZ, dd.spin);
+                drone.getCommandManager().move(dd.vitesseX/2, dd.vitesseY/2, dd.vitesseZ, dd.spin);
             }
             ok = true;
         }
@@ -130,7 +130,7 @@ public class Drone implements ImageListener, AltitudeListener, BatteryListener, 
                 info.enVol = false;
                 drone.getCommandManager().landing();
             } else {
-                info.enVol = false;
+                info.enVol = true;
                 drone.getCommandManager().takeOff();
             }
             

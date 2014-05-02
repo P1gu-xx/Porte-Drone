@@ -80,7 +80,7 @@ public class Wrk implements IWrk, IEcouteurDrone, IEcouteurMindstorms, IEcouteur
 
     public void traiterLesDonnees() {
         while (running) {
-            this.info.infoDrone = drone.getInfo();
+            this.info.infoDrone = new InfoDrone(drone.getInfo());
 
             ctrl.nouvelleInfo(info);
             serveurControle.envoyerInfo(info);

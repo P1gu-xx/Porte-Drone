@@ -13,44 +13,46 @@ import lejos.robotics.SampleProvider;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author PeclatJ
  */
 public class Radar {
-    
+
     public Radar() {
         // Senseur
         irSensorPort = LocalEV3.get().getPort(IRSENSORPORT);
         irSensorModes = new EV3IRSensor(irSensorPort);
         irSensorProvider = irSensorModes.getMode("Seek");
         irSensorSample = new float[irSensorProvider.sampleSize()];
-        
+
         // Moteur
         radarMotor = new EV3MediumRegulatedMotor(MOTOR_PORT);
         radarMotor.setSpeed(350);
         radarMotor.setAcceleration(30);
     }
-    
+
     public void update() {
         // On met a jour les donnees
         fetch();
-        
+
         // Bouge le moteur.
-        if(echoFound) {
+        if (echoFound) {
             //radarMotor.rotateTo((Math.abs(radarRotation + (int)echoAngle + MIN_ANGLE) - MIN_ANGLE) % MAX_ANGLE, true);
-  
-                radarMotor.rotate((int)echoAngle, true);
-            System.out.println("echo angle:"+echoAngle);
+            if (Math.abs(echoAngle) > 10) {
+                radarMotor.rotate((int) echoAngle, true);
+                System.out.println("echo angle:" + echoAngle);
+            } else {
+                radarMotor.flt(true);
+            }
         } else {
-            radarMotor.stop(true);
+            radarMotor.flt(true);
         }
     }
-    
+
     private void fetch() {
         irSensorProvider.fetchSample(irSensorSample, 0);
-        
+
         radarRotation = Math.abs(radarMotor.getTachoCount()) - 90;
         echoFound = !(irSensorSample[4] == 0 && irSensorSample[5] >= 100.0);
         echoDistance = irSensorSample[5] * 2 / 100;
@@ -68,11 +70,11 @@ public class Radar {
     public boolean isEchoFound() {
         return echoFound;
     }
-    
+
     public int getRotation() {
         return radarRotation;
     }
-    
+
     private static final String IRSENSORPORT = "S1";
     private static final Port MOTOR_PORT = MotorPort.A;
     private static final int MIN_ANGLE = 180;
@@ -87,8 +89,8 @@ public class Radar {
     private float echoAngle;
     private boolean echoFound;
     private int radarRotation;
-    
+
     private RegulatedMotor radarMotor;
     private int positionMotor;
-    
+
 }
