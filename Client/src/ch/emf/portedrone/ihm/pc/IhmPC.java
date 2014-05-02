@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.ihm.pc;
 
 import ch.emf.portedrone.beans.Info;
@@ -12,13 +8,13 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * IHM principale de l'application.
  * @author PeclatJ
  */
 public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
 
     /**
-     * Creates new form IhmPC
+     * Constructeur de l'IHM
      */
     public IhmPC() {
         initComponents();
@@ -285,6 +281,10 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
         System.exit(0);
     }
     
+    /**
+     * Défini le contrôleur de l'IHM.
+     * @param ctrl La référence vers le contrôleur,
+     */
     public void setCtrl(ICtrlIhm ctrl) {
         this.ctrl = ctrl;
     }
@@ -310,6 +310,9 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
     private ch.emf.portedrone.ihm.pc.RadarMindstormsPanel radar;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * La référence vers le contrôleur.
+     */
     private ICtrlIhm ctrl;
 
     

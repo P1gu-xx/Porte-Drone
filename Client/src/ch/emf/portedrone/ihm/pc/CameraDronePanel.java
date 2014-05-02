@@ -1,27 +1,23 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.ihm.pc;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 /**
- *
+ * JPanel pour afficher dans l'IHM la camera du drone.
  * @author PeclatJ
  */
 public class CameraDronePanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CameraDronePanel
+     * Constructeur du panel.
      */
     public CameraDronePanel() {
         initComponents();
         img = null;
     }
 
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
     @Override
     public void paint(Graphics g) {
         super.paint(g);
@@ -31,10 +27,17 @@ public class CameraDronePanel extends javax.swing.JPanel {
         }
     }
 
+    /**
+     * Définir l'image de la camera du drone à afficher.
+     * @param img Lîmage de la camera du drone.
+     */
     public void setImg(BufferedImage img) {
         this.img = img;
     }
 
+    /**
+     * L'image de la camera du drone.
+     */
     private BufferedImage img;
 
     /**
