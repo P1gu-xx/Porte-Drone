@@ -30,7 +30,6 @@ public class CommunicationVideo implements Runnable {
             }
         }
     }
-    DatagramSocket ds;
     byte[] buffer = new byte[65536];
     boolean available;
     BufferedImage img;
@@ -39,7 +38,7 @@ public class CommunicationVideo implements Runnable {
         DatagramPacket p = new DatagramPacket(buffer, buffer.length);
         try {
             System.out.println("debut");
-            ds.receive(p);
+            in.receive(p);
             System.out.println("packet recu");
         } catch (IOException e) {
             e.printStackTrace();

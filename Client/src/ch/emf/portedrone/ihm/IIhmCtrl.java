@@ -17,6 +17,7 @@ public interface IIhmCtrl {
     public void setVisible(boolean visible);
     public void afficherMessage(String titre, String message, int type);
     public void setInfo(Info info);
+    public void setControleDrone(boolean controleDrone);
     public void exit();
     public void afficherImageDrone(BufferedImage img);
 }

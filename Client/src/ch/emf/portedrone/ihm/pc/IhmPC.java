@@ -10,12 +10,11 @@ import ch.emf.portedrone.ihm.IIhmCtrl;
 import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author PeclatJ
  */
-public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
+public class IhmPC extends javax.swing.JFrame implements IIhmCtrl {
 
     /**
      * Creates new form IhmPC
@@ -39,8 +38,6 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
         lblMindstormsBatterieTexte = new javax.swing.JLabel();
         lblMindstormsVitesseValeur = new javax.swing.JLabel();
         lblMindstormsBatterieValeur = new javax.swing.JLabel();
-        panCameraMindstorms = new javax.swing.JPanel();
-        cameraMindstormsPanel1 = new ch.emf.portedrone.ihm.pc.CameraMindstormsPanel();
         panCameraDrone = new javax.swing.JPanel();
         cameraDronePanel1 = new ch.emf.portedrone.ihm.pc.CameraDronePanel();
         panInfoDrone = new javax.swing.JPanel();
@@ -50,6 +47,8 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
         lblDroneHauteurValeur = new javax.swing.JLabel();
         lblDroneBatterieValeur = new javax.swing.JLabel();
         lblDroneVitesseValeur = new javax.swing.JLabel();
+        lblControleTexte = new javax.swing.JLabel();
+        lblControleValeur = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,7 +98,7 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
                     .addComponent(lblMindstormsBatterieTexte))
                 .addGap(18, 18, 18)
                 .addGroup(panInfoMindstormsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMindstormsBatterieValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(lblMindstormsBatterieValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                     .addComponent(lblMindstormsVitesseValeur, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panRadar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,37 +118,13 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
             .addComponent(panRadar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        panCameraMindstorms.setBorder(javax.swing.BorderFactory.createTitledBorder("Camera Mindstorms"));
-
-        javax.swing.GroupLayout cameraMindstormsPanel1Layout = new javax.swing.GroupLayout(cameraMindstormsPanel1);
-        cameraMindstormsPanel1.setLayout(cameraMindstormsPanel1Layout);
-        cameraMindstormsPanel1Layout.setHorizontalGroup(
-            cameraMindstormsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
-        );
-        cameraMindstormsPanel1Layout.setVerticalGroup(
-            cameraMindstormsPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout panCameraMindstormsLayout = new javax.swing.GroupLayout(panCameraMindstorms);
-        panCameraMindstorms.setLayout(panCameraMindstormsLayout);
-        panCameraMindstormsLayout.setHorizontalGroup(
-            panCameraMindstormsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cameraMindstormsPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        panCameraMindstormsLayout.setVerticalGroup(
-            panCameraMindstormsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cameraMindstormsPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
         panCameraDrone.setBorder(javax.swing.BorderFactory.createTitledBorder("Camera Drone"));
 
         javax.swing.GroupLayout cameraDronePanel1Layout = new javax.swing.GroupLayout(cameraDronePanel1);
         cameraDronePanel1.setLayout(cameraDronePanel1Layout);
         cameraDronePanel1Layout.setHorizontalGroup(
             cameraDronePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 203, Short.MAX_VALUE)
         );
         cameraDronePanel1Layout.setVerticalGroup(
             cameraDronePanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,11 +171,11 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
                     .addGroup(panInfoDroneLayout.createSequentialGroup()
                         .addComponent(lblDroneVitesseTexte)
                         .addGap(22, 22, 22)
-                        .addComponent(lblDroneVitesseValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+                        .addComponent(lblDroneVitesseValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
                     .addGroup(panInfoDroneLayout.createSequentialGroup()
                         .addComponent(lblDroneBatterieTexte)
                         .addGap(18, 18, 18)
-                        .addComponent(lblDroneBatterieValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)))
+                        .addComponent(lblDroneBatterieValeur, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panInfoDroneLayout.setVerticalGroup(
@@ -221,6 +196,10 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
                 .addContainerGap(117, Short.MAX_VALUE))
         );
 
+        lblControleTexte.setText("Contrôle de :");
+
+        lblControleValeur.setText("Drone");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,12 +207,15 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panInfoMindstorms, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
-                    .addComponent(panInfoDrone, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE))
+                    .addComponent(panInfoMindstorms, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+                    .addComponent(panInfoDrone, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panCameraDrone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panCameraMindstorms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panCameraDrone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblControleTexte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblControleValeur, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -242,13 +224,15 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panInfoMindstorms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panCameraMindstorms, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panCameraDrone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panInfoDrone, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(panCameraDrone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(panInfoDrone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblControleTexte)
+                            .addComponent(lblControleValeur))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         pack();
@@ -258,7 +242,7 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
     public void afficherMessage(String titre, String message, int type) {
         JOptionPane.showConfirmDialog(this, titre, message, type);
     }
-    
+
     @Override
     public void setInfo(Info info) {
         lblMindstormsVitesseValeur.setText("G: " + info.infoMindstorms.deplacementMindstorms.vitesseRoueGauche + "D: " + info.infoMindstorms.deplacementMindstorms.vitesseRoueDroite);
@@ -266,32 +250,38 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
         lblDroneHauteurValeur.setText("" + info.infoDrone.hauteur);
         lblDroneBatterieValeur.setText("" + info.infoDrone.hauteur);
         lblDroneVitesseValeur.setText("X: " + info.infoDrone.deplacementDrone.vitesseX + " Y: " + info.infoDrone.deplacementDrone.vitesseY + " Z: " + info.infoDrone.deplacementDrone.vitesseZ + " Spin: " + info.infoDrone.deplacementDrone.spin);
-        
+
         radar.setEchos(info.infoMindstorms.echo);
         radar.setAngle(info.infoMindstorms.angle);
-        
+
         repaint();
     }
 
     @Override
     public void afficherImageDrone(BufferedImage img) {
-  cameraDronePanel1.setImg(img);
+        cameraDronePanel1.setImg(img);
     }
-    
-    
-    
+
+    public void setControleDrone(boolean controleDrone) {
+        if(controleDrone) {
+            lblControleValeur.setText("Drone");
+        } else {
+            lblControleValeur.setText("Mindstorms");
+        }
+    }
+
     @Override
     public void exit() {
         System.exit(0);
     }
-    
+
     public void setCtrl(ICtrlIhm ctrl) {
         this.ctrl = ctrl;
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private ch.emf.portedrone.ihm.pc.CameraDronePanel cameraDronePanel1;
-    private ch.emf.portedrone.ihm.pc.CameraMindstormsPanel cameraMindstormsPanel1;
+    private javax.swing.JLabel lblControleTexte;
+    private javax.swing.JLabel lblControleValeur;
     private javax.swing.JLabel lblDroneBatterieTexte;
     private javax.swing.JLabel lblDroneBatterieValeur;
     private javax.swing.JLabel lblDroneHauteurTexte;
@@ -303,16 +293,10 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl{
     private javax.swing.JLabel lblMindstormsVitesseTexte;
     private javax.swing.JLabel lblMindstormsVitesseValeur;
     private javax.swing.JPanel panCameraDrone;
-    private javax.swing.JPanel panCameraMindstorms;
     private javax.swing.JPanel panInfoDrone;
     private javax.swing.JPanel panInfoMindstorms;
     private javax.swing.JPanel panRadar;
     private ch.emf.portedrone.ihm.pc.RadarMindstormsPanel radar;
     // End of variables declaration//GEN-END:variables
-
     private ICtrlIhm ctrl;
-
-    
 }
-
-

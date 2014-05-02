@@ -56,6 +56,10 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         ihm.setInfo(info);
     }
     
+    public void setControleDrone(boolean controleDrone) {
+        ihm.setControleDrone(controleDrone);
+    }
+    
     public void setIhm(IIhmCtrl ihm) {
         this.ihm = ihm;
     }

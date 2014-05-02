@@ -26,33 +26,40 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panInfoMindstorms" pref="322" max="32767" attributes="0"/>
-                  <Component id="panInfoDrone" pref="322" max="32767" attributes="0"/>
+                  <Component id="panInfoMindstorms" pref="307" max="32767" attributes="0"/>
+                  <Component id="panInfoDrone" pref="307" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="panCameraDrone" max="32767" attributes="0"/>
-                  <Component id="panCameraMindstorms" max="32767" attributes="0"/>
+                  <Component id="panCameraDrone" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="lblControleTexte" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lblControleValeur" min="-2" pref="83" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="panInfoMindstorms" max="32767" attributes="0"/>
-                  <Component id="panCameraMindstorms" max="32767" attributes="0"/>
+                  <Component id="panCameraDrone" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="panInfoDrone" pref="205" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="panCameraDrone" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblControleTexte" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblControleValeur" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="panInfoDrone" alignment="1" pref="205" max="32767" attributes="0"/>
               </Group>
           </Group>
       </Group>
@@ -82,7 +89,7 @@
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblMindstormsBatterieValeur" pref="78" max="32767" attributes="0"/>
+                      <Component id="lblMindstormsBatterieValeur" pref="63" max="32767" attributes="0"/>
                       <Component id="lblMindstormsVitesseValeur" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -171,45 +178,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panCameraMindstorms">
-      <Properties>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Camera Mindstorms"/>
-          </Border>
-        </Property>
-      </Properties>
-
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="cameraMindstormsPanel1" alignment="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="cameraMindstormsPanel1" alignment="0" max="32767" attributes="0"/>
-          </Group>
-        </DimensionLayout>
-      </Layout>
-      <SubComponents>
-        <Container class="ch.emf.portedrone.ihm.pc.CameraMindstormsPanel" name="cameraMindstormsPanel1">
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="188" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-            </DimensionLayout>
-          </Layout>
-        </Container>
-      </SubComponents>
-    </Container>
     <Container class="javax.swing.JPanel" name="panCameraDrone">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -237,7 +205,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="203" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -275,12 +243,12 @@
                       <Group type="102" attributes="0">
                           <Component id="lblDroneVitesseTexte" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="lblDroneVitesseValeur" pref="234" max="32767" attributes="0"/>
+                          <Component id="lblDroneVitesseValeur" pref="219" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="lblDroneBatterieTexte" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblDroneBatterieValeur" pref="234" max="32767" attributes="0"/>
+                          <Component id="lblDroneBatterieValeur" pref="219" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -343,5 +311,15 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JLabel" name="lblControleTexte">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Contr&#xf4;le de :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblControleValeur">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Drone"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

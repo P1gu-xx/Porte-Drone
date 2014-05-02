@@ -15,6 +15,6 @@ import java.awt.image.BufferedImage;
 public interface ICtrlWrk {
     
     public void setInfo(Info info);
-        
-    public void imageRecu(BufferedImage img) ;
+    public void setControleDrone(boolean controleDrone);
+    public void imageRecu(BufferedImage img);
 }

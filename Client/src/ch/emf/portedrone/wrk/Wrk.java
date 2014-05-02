@@ -37,11 +37,13 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                 
                 if(manette.isPressed(ManetteDualshock3.R1) && !manette.isPressed(ManetteDualshock3.L1)) {
                     droneSelectionne = true;
+                    ctrl.setControleDrone(true);
                     System.out.println("Drone");
                 }
                 
                 if(manette.isPressed(ManetteDualshock3.L1) && !manette.isPressed(ManetteDualshock3.R1)) {
                     droneSelectionne = false;
+                    ctrl.setControleDrone(false);
                     System.out.println("Mindstorms");
                 }
 
@@ -61,8 +63,8 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                 } else { // Commande pour le Mindstorms
                     client.ecrireInt(4);
                     client.ecrireObjet(new DeplacementMindstorms(
-                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
-                            (int) (manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100)));
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100)));
                 }
 
                 try {
