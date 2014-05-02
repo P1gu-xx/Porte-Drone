@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.ihm.pc;
 
 import ch.emf.portedrone.ctrl.ICtrlIhm;
@@ -10,13 +6,13 @@ import javax.swing.JOptionPane;
 
 
 /**
- *
+ * IHM de l'application pour l'écran de connexion.
  * @author PeclatJ
  */
 public class IhmPCConnexion extends javax.swing.JFrame implements IIhmConnexionCtrl {
 
     /**
-     * Creates new form IhmPCConnexion
+     * Constructeur de l'application.
      */
     public IhmPCConnexion() {
         initComponents();
@@ -78,6 +74,10 @@ public class IhmPCConnexion extends javax.swing.JFrame implements IIhmConnexionC
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Cette methode est appelée quand le bouton de connexion est cliqué. 
+     * @param evt l'évenement
+     */
     private void btnConnexionClique(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConnexionClique
         ctrl.connexion(txtLogin.getText(), txtMotDePasse.getText());
     }//GEN-LAST:event_btnConnexionClique
@@ -92,6 +92,10 @@ public class IhmPCConnexion extends javax.swing.JFrame implements IIhmConnexionC
         System.exit(0);
     }
     
+    /**
+     * Permet de définir le contrôleur de l'IHM Connexion,
+     * @param ctrl La référence vers le contrôleur
+     */
     public void setCtrl(ICtrlIhm ctrl) {
         this.ctrl = ctrl;
     }
@@ -102,6 +106,9 @@ public class IhmPCConnexion extends javax.swing.JFrame implements IIhmConnexionC
     private javax.swing.JTextField txtMotDePasse;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * La référence vers le contrôleur.
+     */
     private ICtrlIhm ctrl;
 
 }

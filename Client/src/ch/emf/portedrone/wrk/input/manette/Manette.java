@@ -2,6 +2,10 @@ package ch.emf.portedrone.wrk.input.manette;
 
 import net.java.games.input.*;
 
+/**
+ * 
+ * @author PeclatJ
+ */
 public class Manette {
 
     private Controller controller;

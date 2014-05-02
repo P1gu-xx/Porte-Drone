@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.ctrl;
 
 import ch.emf.portedrone.beans.Info;
@@ -13,16 +9,21 @@ import java.awt.image.BufferedImage;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Classe contrôleur de l'application. Elle gère les échanges entre le Worker et l'IHM.
  * @author PeclatJ
  */
 public class Ctrl implements ICtrlIhm, ICtrlWrk{
     
+    /**
+     * Constructeur de la classe.
+     */
     public Ctrl() {
         
     }
     
-    
+    /**
+     * Lance l'application. Demarre la plus part des Threads et ouvre l'interface graphique.
+     */
     public void start() {
         try {
             wrk.connexion("172.23.86.237");
@@ -35,7 +36,7 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         }
     }
    
-        @Override
+    @Override
     public void imageRecu(BufferedImage img) {
         ihm.afficherImageDrone(img);
     }
@@ -56,24 +57,50 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         ihm.setInfo(info);
     }
     
+<<<<<<< HEAD
     public void setControleDrone(boolean controleDrone) {
         ihm.setControleDrone(controleDrone);
     }
     
+=======
+    /**
+     * Défini l'IHM principale à contrôler.
+     * @param ihm la réference vers l'IHM principale
+     */
+>>>>>>> 7854867d6b03a622f353dd075cc97b72d779caf8
     public void setIhm(IIhmCtrl ihm) {
         this.ihm = ihm;
     }
     
+    /**
+     * Défini l'IHM pour la connexion à contrôler.
+     * @param ihmConnexion la référence vers l'IHM de la connexion.
+     */
     public void setIhmConnexion(IIhmConnexionCtrl ihmConnexion) {
         this.ihmConnexion = ihmConnexion;
     }
 
+    /**
+     * Défini le Worker à contrôler.
+     * @param wrk la référence vers le worker à contrôler.
+     */
     public void setWrk(IWrkCtrl wrk) {
         this.wrk = wrk;
     }
     
+    /**
+     * La référence vers l'ihm principale.
+     */
     private IIhmCtrl ihm;
+    
+    /**
+     * La référence vers l'ihm de la connexion.
+     */
     private IIhmConnexionCtrl ihmConnexion;
+    
+    /**
+     * La référence vers le Worker.
+     */
     private IWrkCtrl wrk;
 
 }
