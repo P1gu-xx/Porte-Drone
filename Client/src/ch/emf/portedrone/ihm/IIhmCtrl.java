@@ -29,14 +29,11 @@ public interface IIhmCtrl {
      * @param info le bean contenant les inforamtions affichées sur l'IHM.
      */
     public void setInfo(Info info);
-<<<<<<< HEAD
     public void setControleDrone(boolean controleDrone);
-=======
     
     /**
      * Permet de terminer le programme.
      */
->>>>>>> 7854867d6b03a622f353dd075cc97b72d779caf8
     public void exit();
     
     /**

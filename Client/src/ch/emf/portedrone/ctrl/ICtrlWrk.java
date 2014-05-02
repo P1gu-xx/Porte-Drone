@@ -15,15 +15,11 @@ public interface ICtrlWrk {
      * @param info Le bean Info, contenant les informations à afficher sur l'écran.
      */
     public void setInfo(Info info);
-<<<<<<< HEAD
     public void setControleDrone(boolean controleDrone);
-    public void imageRecu(BufferedImage img);
-=======
        
     /**
      * Permet de mettre à jour l'image de la camera du drone à l'écran.
      * @param img L'image.
      */
-    public void imageRecu(BufferedImage img) ;
->>>>>>> 7854867d6b03a622f353dd075cc97b72d779caf8
+    public void imageRecu(BufferedImage img);
 }

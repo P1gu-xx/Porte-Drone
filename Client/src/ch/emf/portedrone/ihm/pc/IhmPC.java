@@ -270,15 +270,11 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl {
     public void exit() {
         System.exit(0);
     }
-<<<<<<< HEAD
-
-=======
     
     /**
      * Défini le contrôleur de l'IHM.
      * @param ctrl La référence vers le contrôleur,
      */
->>>>>>> 7854867d6b03a622f353dd075cc97b72d779caf8
     public void setCtrl(ICtrlIhm ctrl) {
         this.ctrl = ctrl;
     }
@@ -302,12 +298,9 @@ public class IhmPC extends javax.swing.JFrame implements IIhmCtrl {
     private javax.swing.JPanel panRadar;
     private ch.emf.portedrone.ihm.pc.RadarMindstormsPanel radar;
     // End of variables declaration//GEN-END:variables
-<<<<<<< HEAD
-=======
 
     /**
      * La référence vers le contrôleur.
      */
->>>>>>> 7854867d6b03a622f353dd075cc97b72d779caf8
     private ICtrlIhm ctrl;
 }
