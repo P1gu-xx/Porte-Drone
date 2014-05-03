@@ -34,7 +34,6 @@ public class Client implements IClient {
         threadUDP = new Thread(communicationVideo);
 
         threadTCP.start();
-        threadUDP.start();
     }
 
     /**
@@ -48,7 +47,7 @@ public class Client implements IClient {
             Socket s = new Socket(adresse, PORT_TCP);
 
             inTCP = new ObjectInputStream(s.getInputStream());
-
+            socketUDP = new DatagramSocket(8888);
             outTCP = new ObjectOutputStream(s.getOutputStream());
 
         } catch (IOException ex) {
@@ -72,6 +71,7 @@ public class Client implements IClient {
                 communicationControle.setIn(inTCP);
                 communicationVideo.setDatagramSocket(socketUDP);
                 connexion = true;
+                threadUDP.start();
                 return true;
             }
         } catch (IOException ex) {

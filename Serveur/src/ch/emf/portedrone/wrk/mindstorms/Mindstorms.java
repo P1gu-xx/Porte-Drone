@@ -66,6 +66,7 @@ public class Mindstorms extends Thread {
                 out.writeObject(objet);
                 out.flush();
             } catch (IOException ex) {
+                System.out.println(ex);
                 connexion = false;
             }
         }

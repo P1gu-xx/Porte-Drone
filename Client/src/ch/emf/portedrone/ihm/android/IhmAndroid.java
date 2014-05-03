@@ -39,5 +39,10 @@ public class IhmAndroid implements IIhmCtrl{
     public void afficherImageDrone(BufferedImage img) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void setControleDrone(boolean controleDrone) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

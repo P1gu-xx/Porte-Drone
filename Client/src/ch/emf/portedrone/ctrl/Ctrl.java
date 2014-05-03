@@ -57,10 +57,17 @@ public class Ctrl implements ICtrlIhm, ICtrlWrk{
         ihm.setInfo(info);
     }
     
+
+    public void setControleDrone(boolean controleDrone) {
+        ihm.setControleDrone(controleDrone);
+    }
+    
+
     /**
      * Défini l'IHM principale à contrôler.
      * @param ihm la réference vers l'IHM principale
      */
+
     public void setIhm(IIhmCtrl ihm) {
         this.ihm = ihm;
     }

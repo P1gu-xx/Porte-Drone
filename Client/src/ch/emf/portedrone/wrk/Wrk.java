@@ -37,32 +37,40 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
 
                 if (manette.isPressed(ManetteDualshock3.R1) && !manette.isPressed(ManetteDualshock3.L1)) {
                     droneSelectionne = true;
+                    ctrl.setControleDrone(true);
                     System.out.println("Drone");
                 }
 
                 if (manette.isPressed(ManetteDualshock3.L1) && !manette.isPressed(ManetteDualshock3.R1)) {
                     droneSelectionne = false;
+                    ctrl.setControleDrone(false);
                     System.out.println("Mindstorms");
                 }
 
+                if (manette.isPressed(ManetteDualshock3.CARRE) && !boutonChangerCamera) {
+                    client.ecrireInt(2);
+                    boutonChangerCamera = true;
+                }
+                boutonChangerCamera = manette.isPressed(ManetteDualshock3.CARRE);
+
+
                 if (droneSelectionne) { // Commande pour le drone
-                    if (manette.isPressed(ManetteDualshock3.CROIX)) {
-                        client.ecrireInt(0);
-                    }
+
+
                     client.ecrireInt(1);
                     client.ecrireObjet(new DeplacementDrone(
                             (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100),
                             (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_X) * 100),
-                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_X) * 100),
-                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100)));
-                    if (manette.isPressed(ManetteDualshock3.CARRE)) {
-                        client.ecrireInt(2);
+                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_X) * 100)));
+                    if (manette.isPressed(ManetteDualshock3.CROIX)) {
+                        client.ecrireInt(0);
                     }
                 } else { // Commande pour le Mindstorms
                     client.ecrireInt(4);
                     client.ecrireObjet(new DeplacementMindstorms(
-                            (int) (manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
-                            (int) (manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100)));
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_RIGHT_Y) * 100),
+                            (int) (-manette.getValue(ManetteDualshock3.ANALOG_LEFT_Y) * 100)));
                 }
 
                 try {
@@ -70,6 +78,8 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
                 } catch (InterruptedException ex) {
                     System.out.println("Interruption");
                 }
+            } else {
+                manette = new ManetteDualshock3();
             }
         }
     }
@@ -112,39 +122,36 @@ public class Wrk implements IWrkCtrl, IEcouteurReseau {
 
     /**
      * Permet de définir la référence vers le contrôleur de l'application.
+     *
      * @param ctrl La référencce du contrôleur,
      */
     public void setCtrl(ICtrlWrk ctrl) {
         this.ctrl = ctrl;
     }
-    
     /**
      * La référence vers le contrôleur de l'application.
      */
     private ICtrlWrk ctrl;
-    
     /**
      * Connexion au serveur.
      */
     private Client client;
-    
     /**
      * Le login de l'utilisateur.
      */
     private Login login;
-    
     /**
      * La manette PS3.
      */
     private ManetteDualshock3 manette;
-    
     /**
-     * Défini si l'on commande le drone ou le mindstorms.
-     * true = drone.
-     * false = Mindstorms.
+     * Défini si l'on commande le drone ou le mindstorms. true = drone. false = Mindstorms.
      */
     private boolean droneSelectionne;
-    
+    /**
+     * Variable pour le bouton de la camera.
+     */
+    private boolean boutonChangerCamera;
     /**
      * Défini si l'application doit se terminer.
      */
