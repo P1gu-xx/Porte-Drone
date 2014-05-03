@@ -1,0 +1,14 @@
+ch.emf.portedrone.application
+ch.emf.portedrone.beans
+ch.emf.portedrone.beans.drone
+ch.emf.portedrone.beans.mindstorms
+ch.emf.portedrone.ctrl
+ch.emf.portedrone.exception
+ch.emf.portedrone.ihm
+ch.emf.portedrone.ihm.android
+ch.emf.portedrone.ihm.pc
+ch.emf.portedrone.wrk
+ch.emf.portedrone.wrk.input
+ch.emf.portedrone.wrk.input.android
+ch.emf.portedrone.wrk.input.manette
+ch.emf.portedrone.wrk.reseau
