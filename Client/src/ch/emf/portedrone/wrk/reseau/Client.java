@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk.reseau;
 
 import ch.emf.portedrone.beans.Login;
@@ -19,11 +15,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Classe réseau de l'application Cliente.
  * @author PeclatJ
  */
 public class Client implements IClient {
 
+    /**
+     * Constructeur de la classe.
+     */
     public Client() {
         communicationControle = new CommunicationControle();
         communicationVideo = new CommunicationVideo();
@@ -38,6 +37,11 @@ public class Client implements IClient {
         threadUDP.start();
     }
 
+    /**
+     * Lance une connexion vers le serveur.
+     * @param adresse L'adresse IP du serveur.
+     * @throws ConnexionException Une erreur en cas d'échec.
+     */
     public void connexion(String adresse) throws ConnexionException {
         this.adresse = adresse;
         try {
@@ -53,6 +57,12 @@ public class Client implements IClient {
         }
     }
 
+    /**
+     * Permet au client de s'authentifier sur le serveur.
+     * @param login Le bean avec le login de l'utilisateur.
+     * @return L'autorisation du serveur. true = authentification réussie. false = échec.
+     * @throws ConnexionException En cas d'erreur d'authentification.
+     */
     public boolean authentification(Login login) throws ConnexionException {
         try {
             ecrireObjet(login);
@@ -70,6 +80,10 @@ public class Client implements IClient {
         return false;
     }
 
+    /**
+     * Permet au client d'envoyer un int au serveur.
+     * @param i La valeur à envoyer au serveur.
+     */
     public void ecrireInt(int i) {
         try {
             outTCP.writeInt(i);
@@ -79,6 +93,10 @@ public class Client implements IClient {
         }
     }
 
+    /**
+     * Permet au client d'envoyer un objet serialisé au serveur.
+     * @param objet l'objet à envoyer au serveur.
+     */
     public void ecrireObjet(Object objet) {
         try {
             outTCP.writeObject(objet);
@@ -89,6 +107,11 @@ public class Client implements IClient {
         }
     }
 
+    /**
+     * Permet au client d'envoyer un message par UDP au serveur.
+     * @param msg Le message à envoyer.
+     * @throws ConnexionException L'erreur en cas d'échec.
+     */
     public void ecrireUDP(String msg) throws ConnexionException {
         DatagramPacket donnees = null;
         try {
@@ -104,6 +127,9 @@ public class Client implements IClient {
         }
     }
 
+    /**
+     * Indique au client qu'il doit couper les connexions.
+     */
     public void exit() {
         communicationControle.exit();
         communicationVideo.exit();
@@ -130,18 +156,43 @@ public class Client implements IClient {
         return adresse;
     }
 
+    /**
+     * Défini l'écouteur du client pour recevoir des information par réseau.
+     * @param ecouteur L'écouteur.
+     */
     public void setEcouteurReseau(IEcouteurReseau ecouteur) {
         communicationControle.setEcouteurReseau(ecouteur);
         communicationVideo.setEcouteurReseau(ecouteur);
     }
 
-
-    
-    
+    /**
+     * 
+     */
     public static final int PORT_TCP = 55584;
+    
+    /**
+     * 
+     */
     public static final int PORT_UDP = 55584;
-    private Thread threadTCP, threadUDP;
+    
+    /**
+     * 
+     */
+    private Thread threadTCP;
+    
+    /**
+     * 
+     */
+    private Thread threadUDP;
+    
+    /**
+     * 
+     */
     private CommunicationControle communicationControle;
+    
+    /**
+     * 
+     */
     private CommunicationVideo communicationVideo;
     private ObjectOutputStream outTCP;
     private ObjectInputStream inTCP;

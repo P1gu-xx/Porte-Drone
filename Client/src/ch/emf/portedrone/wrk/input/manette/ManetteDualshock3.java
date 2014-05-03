@@ -1,11 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk.input.manette;
 
 /**
- *
+ * Classe de manette spécifique à la manette PS3.
+ * Contient une liste de constantes avec les indexes de tous les composants.
  * @author PeclatJ
  */
 public class ManetteDualshock3 extends Manette {
@@ -47,6 +44,9 @@ public class ManetteDualshock3 extends Manette {
     public static final float UP_LEFT = 0.125f;
     public static final float UP_RIGHT = 0.375f;
     
+    /**
+     * Constructeur de la classe.
+     */
     public ManetteDualshock3() {
         super();
     }

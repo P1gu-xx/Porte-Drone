@@ -18,9 +18,7 @@
             <file>file:/C:/Users/ramosdasilm/Documents/GitHub/Porte-Drone/Client/src/ch/emf/portedrone/wrk/Wrk.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Client/src/ch/emf/portedrone/ihm/pc/IhmPC.java</file>
-            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Client/src/ch/emf/portedrone/ihm/pc/IhmPCConnexion.java</file>
-            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Client/src/ch/emf/portedrone/ihm/pc/IhmEcho.java</file>
+            <file>file:/C:/Users/Jonathan/Documents/GitHub/Porte-Drone/Client/src/ch/emf/portedrone/wrk/reseau/Client.java</file>
         </group>
     </open-files>
 </project-private>
