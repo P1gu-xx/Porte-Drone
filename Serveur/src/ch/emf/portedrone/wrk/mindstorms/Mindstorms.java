@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk.mindstorms;
 
 import ch.emf.portedrone.beans.mindstorms.InfoMindstorms;
@@ -13,11 +8,15 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- *
+ * Classe réseau qui communique avec le Mindstorms.
  * @author ramosdasilm
  */
 public class Mindstorms extends Thread {
 
+    /**
+     * Constructeur de la classe.
+     * @param ecouteur L'écouteur du réseau.
+     */
     public Mindstorms(IEcouteurMindstorms ecouteur) {
         this.ecouteur = ecouteur;
         exit = false;
@@ -72,6 +71,9 @@ public class Mindstorms extends Thread {
         }
     }
 
+    /**
+     * Indique au programme qu'il doit couper les connexions.
+     */
     public void exit() {
         exit = true;
         try {
@@ -83,7 +85,14 @@ public class Mindstorms extends Thread {
         }
     }
     
+    /**
+     * Adresse IP du Mindstorms.
+     */
     public static final String ADRESSE_IP = "10.0.1.1";
+    
+    /**
+     * Port de communication avec le Mindstorms.
+     */
     public static final int PORT = 4000;
     private Socket socket;
     private IEcouteurMindstorms ecouteur;
