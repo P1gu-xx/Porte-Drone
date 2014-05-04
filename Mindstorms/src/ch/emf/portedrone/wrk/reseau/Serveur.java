@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk.reseau;
 
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
@@ -12,11 +8,15 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- *
+ * Classe serveur de l'application.
  * @author PeclatJ
  */
 public class Serveur extends Thread {
 
+    /**
+     * Constructeur de la classe, initialise le serveur.
+     * @param ecouteur L'écouteur du serveur.
+     */
     public Serveur(IEcouteurServeur ecouteur) {
         super();
         this.ecouteur = ecouteur;
@@ -68,6 +68,9 @@ public class Serveur extends Thread {
         }
     }
 
+    /**
+     * Indique au serveur de fermer les connexion.
+     */
     public void exit() {
         exit = true;
         try {
@@ -80,6 +83,11 @@ public class Serveur extends Thread {
         }
     }
 
+    /**
+     * Permet d'envoyer un objet au client.
+     * @param type L'id de l'objet à envoyer.
+     * @param objet L'objet à envoyer.
+     */
     public void ecrireObjet(int type, Object objet) {
         if (!exit && connexion) {
             try {

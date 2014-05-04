@@ -166,38 +166,63 @@ public class Client implements IClient {
     }
 
     /**
-     * 
+     * Port TCP de la connexion.
      */
     public static final int PORT_TCP = 55584;
     
     /**
-     * 
+     * Port UDP de la connexion.
      */
     public static final int PORT_UDP = 55584;
     
     /**
-     * 
+     * Thread pour écouter le serveur TCP.
      */
     private Thread threadTCP;
     
     /**
-     * 
+     * Thread pour écouter le serveur UDP.
      */
     private Thread threadUDP;
     
     /**
-     * 
+     * Classe runnable pour écouter le serveur UDP.
      */
     private CommunicationControle communicationControle;
     
     /**
-     * 
+     * Classe runnable pour écouter le serveur TCP.
      */
     private CommunicationVideo communicationVideo;
+    
+    /**
+     * Objet pour écrire au serveur TCP.
+     */
     private ObjectOutputStream outTCP;
+    
+    /**
+     * Objet pour lire le serveur TCP.
+     */
     private ObjectInputStream inTCP;
+    
+    /**
+     * L'adresse du serveur TCP et UDP.
+     */
     private String adresse;
+    
+    /**
+     * Permet de savoir si une connexion est établie.
+     */
     private boolean connexion;
+    
+    /**
+     * Socket client vers le serveur TCP.
+     */
     private Socket socketTCP;
+    
+    /**
+     * Socket client vers le serveur UDP.
+     */
     private DatagramSocket socketUDP;
+    
 }

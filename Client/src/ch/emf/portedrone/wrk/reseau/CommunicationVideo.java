@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk.reseau;
 
 import java.awt.image.BufferedImage;
@@ -12,11 +8,14 @@ import java.net.DatagramSocket;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Classe qui gère la commiunication avec le serveur UDP.
  * @author PeclatJ
  */
 public class CommunicationVideo implements Runnable {
 
+    /**
+     * Constructeur de la classe.
+     */
     public CommunicationVideo() {
         exit = false;
         donnees = new DatagramPacket(new byte[1024], 1024);
@@ -34,6 +33,9 @@ public class CommunicationVideo implements Runnable {
     boolean available;
     BufferedImage img;
 
+    /**
+     * Attend et affiche un packet UDP contenant une image.
+     */
     void checkForImage() {
         DatagramPacket p = new DatagramPacket(buffer, buffer.length);
         try {
@@ -55,19 +57,34 @@ public class CommunicationVideo implements Runnable {
         }
     }
 
+    /**
+     * Informe le thread réseau UDP qu'il doit se terminer.
+     */
     public void exit() {
         exit = true;
         in.close();
     }
 
+    /**
+     * Permet de définir un écouteur vers le client,  
+     * @param client L'écouteur.
+     */
     public void setClient(IClient client) {
         this.client = client;
     }
 
+    /**
+     * Permet de définir le flux entrant UDP.
+     * @param in Le flux entrant.
+     */
     public void setDatagramSocket(DatagramSocket in) {
         this.in = in;
     }
 
+    /**
+     * Permet de définir l'écouteur du controleur vidéo.
+     * @param ecouteur L'écouteur vidéo.
+     */
     public void setEcouteurReseau(IEcouteurReseau ecouteur) {
         this.ecouteur = ecouteur;
     }

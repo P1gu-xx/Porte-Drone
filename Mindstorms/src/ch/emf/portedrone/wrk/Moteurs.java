@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
@@ -11,16 +7,23 @@ import lejos.hardware.port.Port;
 import lejos.robotics.RegulatedMotor;
 
 /**
- *
+ * Classe qui gère les moteurs des roues du mindstorms.
  * @author PeclatJ
  */
 public class Moteurs {
     
+    /**
+     * Constructeur de la classe.
+     */
     public Moteurs() {
         wheelMotorLeft = new EV3LargeRegulatedMotor(MOTOR_PORT_LEFT);
         wheelMotorRight = new EV3LargeRegulatedMotor(MOTOR_PORT_RIGHT);
     }
     
+    /**
+     * Met à jour la vitesse des moteurs des roues.
+     * @param deplacement Le bean contenant les informations sur la vitesse des roues.
+     */
     public void update(DeplacementMindstorms deplacement) {
         System.out.println("d :"+deplacement.vitesseRoueDroite+" \t g :"+deplacement.vitesseRoueGauche);
         if(deplacement.vitesseRoueGauche > 5) {
@@ -47,10 +50,18 @@ public class Moteurs {
         }
     }
     
+    /**
+     * Obetenir la vitesse le la roue gauche.
+     * @return La vitesse ne deg/s de la roue gauche.
+     */
     public int getSpeedWheelLeft() {
         return wheelMotorLeft.getSpeed();
     }
     
+    /**
+     * Obetenir la vitesse le la roue droite.
+     * @return La vitesse ne deg/s de la roue droite.
+     */
     public int getSpeedWheelRight() {
         return wheelMotorRight.getSpeed();
     }
@@ -62,5 +73,4 @@ public class Moteurs {
     
     private RegulatedMotor wheelMotorLeft;
     private RegulatedMotor wheelMotorRight;
-    
 }

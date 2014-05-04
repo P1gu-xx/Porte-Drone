@@ -9,16 +9,15 @@ import lejos.hardware.sensor.SensorModes;
 import lejos.robotics.RegulatedMotor;
 import lejos.robotics.SampleProvider;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * Classe qui gère le capteur infrarouge ainsi que le moteur du radar.
  * @author PeclatJ
  */
 public class Radar {
 
+    /**
+     * Constructeur de la classe, initialise le matériel.
+     */
     public Radar() {
         // Senseur
         irSensorPort = LocalEV3.get().getPort(IRSENSORPORT);
@@ -32,6 +31,9 @@ public class Radar {
         radarMotor.setAcceleration(30);
     }
 
+    /**
+     * Met à jour les informations lue par le radar et modifie sa position grâce au moteur.
+     */
     public void update() {
         // On met a jour les donnees
         fetch();
@@ -50,6 +52,9 @@ public class Radar {
         }
     }
 
+    /**
+     * Met à jour les information captées par le capteur infrarouge.
+     */
     private void fetch() {
         irSensorProvider.fetchSample(irSensorSample, 0);
 
@@ -59,18 +64,34 @@ public class Radar {
         echoAngle = irSensorSample[4] * 9;
     }
 
+    /**
+     * Permet d'obtenir la distance en mètre qu'il y a entre l'écho et le radar.
+     * @return La distance en mètre.
+     */
     public float getEchoDistance() {
         return echoDistance;
     }
 
+    /**
+     * Permet d'obtenir l'angle en degré formé par l'écho.
+     * @return L'angle en dergé.
+     */
     public float getEchoAngle() {
         return echoAngle;
     }
 
+    /**
+     * Permet de savor si un écho est détecté.
+     * @return true si un écho est détecté.
+     */
     public boolean isEchoFound() {
         return echoFound;
     }
 
+    /**
+     * Permet d'obtenir l'angle en degré défini par l'orientation du moteur du radar. 
+     * @return L'angle en degré.
+     */
     public int getRotation() {
         return radarRotation;
     }

@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.wrk;
 
 import ch.emf.portedrone.beans.mindstorms.DeplacementMindstorms;
@@ -17,11 +13,14 @@ import lejos.hardware.KeyListener;
 import lejos.utility.Delay;
 
 /**
- *
+ * Classe Worker de l'application.
  * @author PeclatJ
  */
 public class Wrk implements IEcouteurServeur, KeyListener {
 
+    /**
+     * Constructeur de la classe, Met en place le matériel et initialise le serveur.
+     */
     public Wrk() {
         serveur = new Serveur(this);
         moteurs = new Moteurs();
@@ -32,6 +31,9 @@ public class Wrk implements IEcouteurServeur, KeyListener {
         exit = false;
     }
 
+    /**
+     * Lance le serveur, et démarre la boucle principale. 
+     */
     public void start() {
         serveur.start();
         InfoMindstorms infoMindstorms = new InfoMindstorms(new DeplacementMindstorms(0, 0), new ArrayList<ch.emf.portedrone.beans.mindstorms.Echo>(), 0f, 0f);
@@ -72,6 +74,9 @@ public class Wrk implements IEcouteurServeur, KeyListener {
         }
     }
 
+    /**
+     * Indique au programme qu'il doit se terminer.
+     */
     public void exit() {
         exit = true;
         try {

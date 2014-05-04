@@ -1,19 +1,16 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ch.emf.portedrone.application;
 
 import ch.emf.portedrone.wrk.Wrk;
 
 /**
- *
+ * Classe principale de l'application.
  * @author PeclatJ
  */
 public class Application {
 
     /**
-     * @param args the command line arguments
+     * Démarrage de l'application.
+     * @param args useless
      */
     public static void main(String[] args) {
         
