@@ -14,7 +14,16 @@ import java.awt.image.BufferedImage;
  */
 public interface ICtrlWrk {
 
+    /**
+     * permet de donner les info au controlleur.
+     * @param info 
+     */
     void nouvelleInfo(Info info);
+    
+    /**
+     * permet de donner les images du drone au ctrl.
+     * @param img 
+     */
     void afficherCameraDrone(BufferedImage img);
     
 }

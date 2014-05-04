@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Objet qui permet d'écouter les ordre du client et de lui envoyer des infos.
  *
  * @author ramosdasilm
  */
@@ -32,6 +33,11 @@ public class ServeurControle extends Serveur {
     private ObjectInputStream ois;
     private boolean loger;
 
+    /**
+     * Permet de creer un serveur de controle.
+     *
+     * @param ecouteur
+     */
     public ServeurControle(IEcouteurServeurControle ecouteur) {
         super();
         running = true;
@@ -45,6 +51,12 @@ public class ServeurControle extends Serveur {
         }
     }
 
+    /**
+     * permet d'envoyer un beans info qui contient tout les infos a disposition
+     * par le serveur au client.
+     *
+     * @param info le beans a envoyé
+     */
     public void envoyerInfo(Info info) {
         if (oos != null && loger) {
             try {
@@ -58,6 +70,9 @@ public class ServeurControle extends Serveur {
         }
     }
 
+    /**
+     * fonction executer par le thread.
+     */
     @Override
     public void run() {
         super.run();
@@ -98,6 +113,10 @@ public class ServeurControle extends Serveur {
         }
     }
 
+    /**
+     * fonction qui est appeler dans la boucle principal du thread qui va
+     * attendre la connexion d'un client.
+     */
     public void attendreConnexion() {
         try {
             s = ss.accept();
@@ -109,6 +128,12 @@ public class ServeurControle extends Serveur {
         }
     }
 
+    /**
+     * fonction appeler apres qu'un client se connecte va controller les logins
+     * de l'utilisateur. si le login et correcte va lui renvoyer true puis
+     * passer en mode ecoute de commande sinon repart sur une authentification.
+     * en cas d'exeption repart en mode attendre client.
+     */
     public void authentification() {
         try {
             System.out.println("authentification");
@@ -122,8 +147,8 @@ public class ServeurControle extends Serveur {
                 oos.flush();
             } else {
                 oos.writeBoolean(false);
-                authentification();
                 oos.flush();
+                authentification();
             }
 
         } catch (IOException ex) {
@@ -136,6 +161,11 @@ public class ServeurControle extends Serveur {
 
     }
 
+    /**
+     * permet d'arreter le thread. va permetre de quitter la boucle infini.
+     *
+     * @param running
+     */
     @Override
     public void setRunning(boolean running) {
         try {

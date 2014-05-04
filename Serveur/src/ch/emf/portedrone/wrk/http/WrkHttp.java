@@ -7,17 +7,13 @@ package ch.emf.portedrone.wrk.http;
 
 import ch.emf.portedrone.beans.Login;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.CookieHandler;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -26,10 +22,17 @@ import java.util.logging.Logger;
 public class WrkHttp {
 
     public WrkHttp() {
-        // First set the default cookie manager.
         CookieHandler.setDefault(new CookieManager(null, CookiePolicy.ACCEPT_ALL));
     }
 
+    /**
+     * permet de faire une requette http au serveur glasfish pour qu'il
+     * controlle le login recu du client.
+     *
+     * @param login le login du client.
+     * @return si le login est correcte et une session et démaré entre le
+     * serveur et le glassfish.
+     */
     public boolean controlleConnexion(Login login) {
         try {
             String url = "http://localhost:8080/ServeurWeb/Index?action=connexion&login=" + login.email + "&mdp=" + login.mdp + "";
@@ -57,6 +60,13 @@ public class WrkHttp {
         }
     }
 
+    /**
+     * permet d'envoyer une requette d'enregistrement de vol. fonctionne
+     * seulement si on est logé sur le serveur glassfish.
+     *
+     * @param dateDecolage la date du décollage.
+     * @param dateAtterisage la date d'atterisage.
+     */
     public void enregistrerVol(Date dateDecolage, Date dateAtterisage) {
         try {
             String url = "http://localhost:8080/ServeurWeb/Index?action=enregistrerVols&dateDecollage=" + dateDecolage.getTime() + "&dateAtterisage=" + dateAtterisage.getTime();
