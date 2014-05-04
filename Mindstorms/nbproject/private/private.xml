@@ -11,5 +11,9 @@
             <file>file:/C:/Users/ramosdasilm/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/wrk/Moteurs.java</file>
         </group>
         <group/>
+        <group name="porte drone">
+            <file>file:/C:/Users/Michael/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/application/Application.java</file>
+            <file>file:/C:/Users/Michael/Documents/GitHub/Porte-Drone/Mindstorms/src/ch/emf/portedrone/beans/mindstorms/Echo.java</file>
+        </group>
     </open-files>
 </project-private>
