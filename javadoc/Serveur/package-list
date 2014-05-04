@@ -1,0 +1,11 @@
+ch.emf.portedrone.application
+ch.emf.portedrone.beans
+ch.emf.portedrone.beans.drone
+ch.emf.portedrone.beans.mindstorms
+ch.emf.portedrone.ctrl
+ch.emf.portedrone.ihm
+ch.emf.portedrone.wrk
+ch.emf.portedrone.wrk.Drone
+ch.emf.portedrone.wrk.http
+ch.emf.portedrone.wrk.mindstorms
+ch.emf.portedrone.wrk.serveur
