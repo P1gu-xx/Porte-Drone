@@ -11,5 +11,8 @@ package ch.emf.portedrone.ctrl;
  * @author ramosdasilm
  */
 public interface ICtrlIhm {
+    /**
+     * permet de donner l'ordre de tout quitter.
+     */
     void exit();
 }

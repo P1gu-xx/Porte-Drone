@@ -10,7 +10,6 @@ import ch.emf.dao.filtering.Search;
 import ch.emf.dao.filtering.Search2;
 import ch.emf.portedrone.beans.Logins;
 import ch.emf.portedrone.beans.Vols;
-import com.google.gson.Gson;
 import java.util.List;
 import javax.persistence.NoResultException;
 
@@ -22,8 +21,10 @@ public class WrkDB {
 
     private static WrkDB bd;
     private ch.emf.dao.JpaDao jpaDao;
-    private Gson gson;
 
+    /**
+     * constructeur de la bd.
+     */
     private WrkDB() {
         try {
             jpaDao = new JpaDao();
@@ -37,7 +38,7 @@ public class WrkDB {
      * Permet de recuperer l'instance de la bd. si elle n'est pas creer va la
      * creer tout seul.
      *
-     * @return
+     * @return un WrkBD.
      */
     public static WrkDB getInstance() {
         if (bd == null) {
@@ -46,6 +47,14 @@ public class WrkDB {
         return bd;
     }
 
+    /**
+     * Va faire une recherche dans la bd pour trouver le login.
+     *
+     * @param login le login rechercher.
+     * @param mdp le mdp du login rechercher.
+     * @return le login si les paramettre coressponde a une entré dans la bd
+     * sinon un null.
+     */
     public Logins trouverLogin(String login, String mdp) {
         Search2 s = new Search2("select p from Logins p");
         s.addFilterEqual("p.login", "" + login);
@@ -60,6 +69,11 @@ public class WrkDB {
         return l;
     }
 
+    /**
+     * Donne les 20 dernier vols.
+     *
+     * @return une list des 20 dernier vols.
+     */
     public List<Vols> donnerLesVols() {
         List<Vols> lesVols = null;
         Search s = new Search(Vols.class);
@@ -79,6 +93,12 @@ public class WrkDB {
         return lesVols;
     }
 
+    /**
+     * va enregistrer le vol dans la bd.
+     *
+     * @param vol le vol a enregistrer.
+     * @return le vol enregistrer.
+     */
     public Vols enregistrerVol(Vols vol) {
         Vols create = jpaDao.create(vol);
         jpaDao.flush();

@@ -17,6 +17,7 @@ import java.net.UnknownHostException;
 import javax.imageio.ImageIO;
 
 /**
+ * Objet qui permet de streamer des flux video.
  *
  * @author ramosdasilm
  */
@@ -29,6 +30,13 @@ public class ServeurVideo extends Serveur {
     private BufferedOutputStream bos;
     private ByteArrayOutputStream baStream;
 
+    /**
+     * Constructeur.
+     *
+     * @param ipDestination ip ou le flux video doit etre envoyé.
+     * @param port le port ou le flux doit etre envoyé.
+     * @throws UnknownHostException
+     */
     public ServeurVideo(String ipDestination, int port) throws UnknownHostException {
         super();
         this.port = port;
@@ -38,16 +46,23 @@ public class ServeurVideo extends Serveur {
         bos = new BufferedOutputStream(baStream);
     }
 
+    /**
+     * Permet de creer un datagramSocket avec un timeout de 0 (pas de timeout).
+     */
     public void creerDatagramSocket() {
         try {
             socket = new DatagramSocket();
             socket.setSoTimeout(0);
-            
         } catch (SocketException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Permet d'envoyer un bufferdimage en udp.
+     *
+     * @param img l'image a envoyer.
+     */
     public void envoyerDonnee(BufferedImage img) {
         System.out.println(img.getType());
         try {
@@ -66,6 +81,4 @@ public class ServeurVideo extends Serveur {
         }
     }
 
-   
-    
 }

@@ -21,7 +21,17 @@ public interface IIhm {
      */
     void afficher(boolean visible);
 
+    /**
+     * permet d'afficher les info du drone.
+     *
+     * @param info
+     */
     void afficherInfoDrone(Info info);
-    
+
+    /**
+     * permte d'afficher la video du drone.
+     *
+     * @param img
+     */
     void afficherCameraDrone(BufferedImage img);
 }

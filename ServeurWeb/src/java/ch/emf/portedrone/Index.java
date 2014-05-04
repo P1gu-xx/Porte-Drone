@@ -71,7 +71,7 @@ public class Index extends HttpServlet {
                 case "enregistrerVols":
                     System.out.println("SESSSION : " + request.getSession().getAttribute("connecter"));
                     if (request.getSession().getAttribute("connecter") != null) {
-                        String reponse = wrk.enregistreVols(
+                        Vols reponse = wrk.enregistreVols(
                                 new Vols(0,
                                         new Date(
                                                 new Long(request.getParameter("dateDecollage"))),
@@ -80,8 +80,8 @@ public class Index extends HttpServlet {
                                         0,
                                         new Logins(
                                                 (int) request.getSession().getAttribute("connecter"))));
-                        System.out.println(reponse);
-                        out.print(reponse);
+                        
+                        out.print((reponse!=null)?"{enregistrement:true}":"{enregistrement:false}");
                     } else {
                         out.print("erreur");
                     }

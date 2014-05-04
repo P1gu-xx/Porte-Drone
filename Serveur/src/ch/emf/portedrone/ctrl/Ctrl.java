@@ -25,6 +25,9 @@ public class Ctrl implements ICtrlWrk, ICtrlIhm {
         this.wrk = new Wrk(this);
     }
     
+    /**
+     * permet de démarer le wrk et de rendre visible l'ihm.
+     */
     public void start() {
         ihm.afficher(true);
         boolean start = wrk.start();
